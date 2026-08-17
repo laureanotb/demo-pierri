@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @keyframes urg-pulse-bg { 0%,100% { background:#B3211F; } 50% { background:#8C1917; } }
+    @keyframes urg-pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.75); } }
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<a href="{{ waHref }}" target="_blank" rel="noopener" style="display:flex;alignItems:center;justifyContent:center;gap:14px;width:100%;boxSizing:border-box;padding:15px 20px;textDecoration:none;animation:urg-pulse-bg 1.6s ease-in-out infinite;borderBottom:1px solid rgba(0,0,0,0.25);" style-hover="filter:brightness(1.08);">
+  <i data-lucide="siren" style="width:26px;height:26px;color:#FFFFFF;flexShrink:0;animation:urg-pulse-dot 1.2s ease-in-out infinite;"></i>
+  <span style="fontFamily:'Work Sans',sans-serif;fontSize:21px;fontWeight:700;letterSpacing:0.8px;color:#FFFFFF;textTransform:uppercase;">Urgencias Penales</span>
+  <span style="width:1px;height:26px;background:rgba(255,255,255,0.35);"></span>
+  <span style="fontFamily:'Work Sans',sans-serif;fontSize:23px;fontWeight:700;color:#FFFFFF;whiteSpace:nowrap;letterSpacing:0.3px;">{{ waText }}</span>
+  <i data-lucide="message-circle" style="width:24px;height:24px;color:#FFFFFF;flexShrink:0;"></i>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:48}}">
+class Component extends DCLogic {
+  componentDidMount() { this.refreshIcons(); }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  renderVals() {
+    return {
+      waHref: 'https://wa.me/5491138024907',
+      waText: '+54 9 11 3802-4907'
+    };
+  }
+}
+</script>
+</body>
+</html>

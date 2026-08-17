@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Miguel Ángel Pierri | Abogados Corporativos</title>
+  <meta name="description" content="Estudio Miguel Ángel Pierri &amp; Abogados, más de 33 años de trayectoria en Derecho Penal, Civil, Familia, Laboral y Deportivo en Argentina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body{margin:0;background:#F7F4EC}
+    a{color:#1B3358}
+    a:hover{color:#8C7130}
+    #hero-pierri{position:relative;background:#0A1220;overflow:hidden;}
+    #hero-pierri img{width:100%;height:auto;display:block;}
+    #hero-text-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding:0 6%;}
+    @media (max-width: 1100px){
+      #hero-text-wrap{position:static;background:#0A1220;padding:32px 24px 48px;justify-content:center;}
+      #hero-text-wrap > div{background:none !important;padding:0 !important;text-align:center !important;max-width:100% !important;}
+      #hero-text-wrap blockquote{border-left:none !important;padding-left:0 !important;border-top:2px solid #B4923F;padding-top:20px;}
+      #hero-text-wrap h1{font-size:34px !important;}
+      #hero-text-wrap .hero-ctas{justify-content:center !important;}
+    }
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes urgDot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.75); } }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<div style="fontFamily:'Work Sans',sans-serif;color:#171B24;">
+  <div style="position:sticky;top:0;zIndex:1000;">
+    <dc-import name="Header" hint-size="100%,80px"></dc-import>
+    <dc-import name="UrgenciasBar" hint-size="100%,62px"></dc-import>
+  </div>
+
+  <section id="hero-pierri">
+    <img src="./assets/hero-pierri-2.png" alt="Miguel Ángel Pierri">
+    <div id="hero-text-wrap">
+      <div style="maxWidth:560px;textAlign:left;background:linear-gradient(100deg,rgba(10,18,32,0) 0%,rgba(10,18,32,0.55) 22%,rgba(10,18,32,0.75) 100%);padding:32px;borderRadius:4px;">
+        <h1 style="fontFamily:'Spectral',serif;fontSize:52px;fontWeight:600;color:#F7F4EC;margin:0 0 6px;">Miguel Ángel Pierri</h1>
+        <span style="display:block;fontSize:14px;fontWeight:500;color:#B4923F;letterSpacing:3px;textTransform:uppercase;margin-bottom:40px;">&amp; Abogados Corporativos</span>
+
+        <blockquote style="borderLeft:2px solid #B4923F;paddingLeft:24px;margin:0 0 28px;">
+          <p style="fontFamily:'Spectral',serif;fontSize:20px;fontStyle:italic;color:#EDEAE0;lineHeight:1.5;margin:0 0 10px;">"Ganamos justicia más rápidamente si hacemos justicia a la parte contraria"</p>
+          <cite style="fontSize:13px;color:#9BA0AD;fontStyle:normal;">— Mahatma Gandhi</cite>
+        </blockquote>
+        <p style="fontSize:15px;color:#9BA0AD;margin:0 0 36px;">Estudio Miguel Ángel Pierri &amp; Abogados</p>
+
+        <div class="hero-ctas" style="display:flex;gap:16px;flexWrap:wrap;">
+          <a href="#contacto" style="background:#B4923F;color:#0A1220;padding:14px 28px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;">Consultá tu caso</a>
+          <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:8px;border:1px solid rgba(180,146,63,0.5);color:#F7F4EC;padding:14px 28px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;">
+            <i data-lucide="phone" style="width:15px;height:15px;"></i>Urgencias Penales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:80px 32px;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <i data-lucide="scale" style="width:26px;height:26px;color:#B4923F;marginBottom:14px;"></i>
+      <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Quiénes Somos</span>
+      <p style="fontFamily:'Spectral',serif;fontSize:26px;lineHeight:1.5;color:#0A1220;margin:14px 0 0;">Con más de 33 años de experiencia, somos un prestigioso estudio de la República Argentina. Innumerables casos de referencia nos otorgan el reconocimiento y respeto de nuestros clientes y competidores.</p>
+    </div>
+  </section>
+
+  <section style="background:#B3211F;padding:0 32px 72px;">
+    <div style="maxWidth:1100px;margin:0 auto;padding:56px 0 0;">
+      <div style="display:flex;alignItems:center;gap:10px;justifyContent:center;marginBottom:20px;">
+        <i data-lucide="clock" style="width:15px;height:15px;color:#FFD9D8;"></i>
+        <span style="fontSize:12px;fontWeight:700;letterSpacing:3px;textTransform:uppercase;color:#FFD9D8;">Atención 24 horas · Todo el país</span>
+      </div>
+      <p style="textAlign:center;fontFamily:'Spectral',serif;fontSize:clamp(38px,5.5vw,62px);fontWeight:600;color:#FFFFFF;margin:0 0 10px;lineHeight:1.05;display:flex;alignItems:center;justifyContent:center;gap:18px;flexWrap:wrap;">
+        <i data-lucide="siren" style="width:0.82em;height:0.82em;"></i>Urgencias Penales
+      </p>
+      <p style="textAlign:center;fontSize:15px;color:rgba(255,255,255,0.82);lineHeight:1.6;margin:0 auto 32px;maxWidth:560px;">Detenciones, allanamientos, declaraciones e indagatorias. Si es ahora, llamá ahora.</p>
+      <div style="display:flex;gap:28px;flexWrap:wrap;justifyContent:center;marginBottom:34px;">
+        <span style="display:flex;alignItems:center;gap:8px;fontSize:13px;fontWeight:600;color:rgba(255,255,255,0.9);"><i data-lucide="shield-alert" style="width:16px;height:16px;"></i>Detenciones</span>
+        <span style="display:flex;alignItems:center;gap:8px;fontSize:13px;fontWeight:600;color:rgba(255,255,255,0.9);"><i data-lucide="door-open" style="width:16px;height:16px;"></i>Allanamientos</span>
+        <span style="display:flex;alignItems:center;gap:8px;fontSize:13px;fontWeight:600;color:rgba(255,255,255,0.9);"><i data-lucide="mic" style="width:16px;height:16px;"></i>Indagatorias</span>
+      </div>
+      <div style="display:flex;justifyContent:center;">
+        <a href="tel:+5491138024907" style="display:block;textDecoration:none;textAlign:center;" style-hover="opacity:0.86;">
+          <span style="display:flex;alignItems:center;justifyContent:center;gap:0.22em;fontFamily:'Spectral',serif;fontWeight:600;color:#FFFFFF;fontSize:clamp(40px,8vw,96px);lineHeight:1;letterSpacing:-2px;"><i data-lucide="phone" style="width:0.5em;height:0.5em;"></i>+54 9 11 3802-4907</span>
+        </a>
+      </div>
+      <div style="display:flex;gap:14px;flexWrap:wrap;justifyContent:center;marginTop:36px;">
+        <a href="tel:+5491138024907" style="display:flex;alignItems:center;gap:9px;background:#FFFFFF;color:#B3211F;padding:16px 32px;borderRadius:2px;fontSize:14.5px;fontWeight:700;textDecoration:none;">
+          <i data-lucide="phone-call" style="width:17px;height:17px;"></i>Llamar ahora
+        </a>
+        <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:9px;border:1px solid rgba(255,255,255,0.55);color:#FFFFFF;padding:16px 32px;borderRadius:2px;fontSize:14.5px;fontWeight:600;textDecoration:none;">
+          <i data-lucide="message-circle" style="width:17px;height:17px;"></i>WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:80px 32px 88px;">
+    <div style="maxWidth:1200px;margin:0 auto;">
+      <h2 style="fontFamily:'Spectral',serif;fontSize:30px;fontWeight:600;color:#0A1220;textAlign:center;margin:0 0 40px;">Áreas de Práctica</h2>
+      <div style="display:grid;gridTemplateColumns:repeat(5,1fr);gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
+        <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
+          <a href="{{ area.href }}" style="position:relative;background:#FFFFFF;padding:28px 20px;display:flex;flexDirection:column;gap:14px;textDecoration:none;" style-hover="background:#FBF9F4;">
+            <sc-if value="{{ area.badge }}">
+              
+            </sc-if>
+            <i data-lucide="{{ area.icon }}" style="width:24px;height:24px;color:#B4923F;"></i>
+            <span style="fontSize:14px;fontWeight:600;color:#171B24;lineHeight:1.3;">{{ area.name }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 32px 88px;background:#FFFFFF;">
+    <div style="maxWidth:1100px;margin:0 auto;padding:72px 0;">
+      <h2 style="fontFamily:'Spectral',serif;fontSize:26px;fontWeight:600;color:#0A1220;margin:0 0 36px;">Nuestras principales especialidades</h2>
+      <div style="display:grid;gridTemplateColumns:1fr 1fr;gap:2px;background:#E4DFD3;">
+        <sc-for list="{{ summaries }}" as="item" hint-placeholder-count="4">
+          <div style="background:#FFFFFF;padding:28px;">
+            <i data-lucide="{{ item.icon }}" style="width:20px;height:20px;color:#B4923F;marginBottom:12px;"></i>
+            <h3 style="fontFamily:'Spectral',serif;fontSize:18px;fontWeight:600;color:#0A1220;margin:0 0 10px;">{{ item.title }}</h3>
+            <p style="fontSize:14px;color:#5B6270;lineHeight:1.6;margin:0;">{{ item.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0F1B30;padding:80px 32px;">
+    <div style="maxWidth:1200px;margin:0 auto;">
+      <div style="display:flex;alignItems:baseline;justifyContent:space-between;marginBottom:36px;flexWrap:wrap;gap:12px;">
+        <h2 style="fontFamily:'Spectral',serif;fontSize:28px;fontWeight:600;color:#F7F4EC;margin:0;">Casos Resonantes</h2>
+        <a href="/casos-resonantes" style="fontSize:13px;color:#D4B96A;textDecoration:none;">Ver todos los casos →</a>
+      </div>
+      <div style="display:grid;gridTemplateColumns:repeat(4,1fr);gap:1px;background:rgba(180,146,63,0.25);">
+        <sc-for list="{{ casos }}" as="caso" hint-placeholder-count="4">
+          <div style="background:#0A1220;padding:28px 22px;display:flex;flexDirection:column;justifyContent:space-between;gap:20px;minHeight:150px;">
+            <i data-lucide="newspaper" style="width:20px;height:20px;color:#D4B96A;"></i>
+            <span style="fontSize:15px;fontWeight:600;color:#EDEAE0;lineHeight:1.4;">{{ caso.name }}</span>
+            <a href="/casos-resonantes" style="fontSize:12.5px;fontWeight:600;color:#D4B96A;textDecoration:none;">Ver más →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:88px 32px;">
+    <div style="maxWidth:1100px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr;gap:56px;alignItems:center;">
+      <div style="height:420px;overflow:hidden;background:#EDEAE0;">
+        <img src="./assets/pierri-retrato.png" alt="Dr. Miguel Ángel Pierri" style="width:100%;height:100%;objectFit:cover;objectPosition:50% 22%;display:block;">
+      </div>
+      <div>
+        <i data-lucide="landmark" style="width:22px;height:22px;color:#B4923F;marginBottom:12px;"></i>
+        <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Trayectoria</span>
+        <h2 style="fontFamily:'Spectral',serif;fontSize:28px;fontWeight:600;color:#0A1220;margin:14px 0 16px;">Más de tres décadas al frente de la defensa penal</h2>
+        <p style="fontSize:14.5px;color:#5B6270;lineHeight:1.7;margin:0 0 26px;">Miguel Ángel Pierri construyó, junto a su equipo, uno de los estudios de mayor exposición mediática del país, interviniendo en causas de alcance nacional e internacional.</p>
+        <a href="/trayectoria" style="display:inline-flex;alignItems:center;gap:8px;background:#0A1220;color:#F7F4EC;padding:13px 24px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;"><i data-lucide="arrow-right" style="width:15px;height:15px;"></i>Conocé la trayectoria completa</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;padding:80px 32px;borderTop:1px solid #E4DFD3;borderBottom:1px solid #E4DFD3;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <i data-lucide="quote" style="width:24px;height:24px;color:#B4923F;marginBottom:16px;"></i>
+      <p style="fontFamily:'Spectral',serif;fontSize:26px;fontStyle:italic;color:#0A1220;lineHeight:1.5;margin:0 0 26px;">"Ganamos la confianza de aquellos en quienes ponemos la nuestra."</p>
+      <div style="display:flex;gap:16px;justifyContent:center;flexWrap:wrap;">
+        <a href="/clientes" style="display:flex;alignItems:center;gap:8px;color:#0A1220;fontSize:14px;fontWeight:600;textDecoration:none;border:1px solid #0A1220;padding:12px 22px;borderRadius:2px;">
+          <i data-lucide="play" style="width:15px;height:15px;"></i>Ver video institucional
+        </a>
+        <a href="/clientes" style="display:flex;alignItems:center;color:#B4923F;fontSize:14px;fontWeight:600;textDecoration:none;padding:12px 22px;">Conocer clientes →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" style="padding:88px 32px;">
+    <div style="maxWidth:640px;margin:0 auto;">
+      <i data-lucide="mail" style="width:22px;height:22px;color:#B4923F;marginBottom:10px;"></i>
+      <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Contacto</span>
+      <h2 style="fontFamily:'Spectral',serif;fontSize:30px;fontWeight:600;color:#0A1220;margin:12px 0 32px;">Consultá tu caso</h2>
+
+      <sc-if value="{{ submitted }}">
+        <div style="background:#FFFFFF;border:1px solid #E4DFD3;padding:28px;borderRadius:2px;">
+          <p style="fontSize:15px;color:#0A1220;margin:0;">Gracias, recibimos tu consulta. Nos pondremos en contacto a la brevedad.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ !submitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ handleSubmit }}" style="display:flex;flexDirection:column;gap:20px;">
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre completo</label>
+            <input type="text" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
+            <sc-if value="{{ errors.nombre }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.nombre }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="at-sign" style="width:14px;height:14px;color:#B4923F;"></i>Correo electrónico</label>
+            <input type="text" value="{{ fields.email }}" onChange="{{ onChangeEmail }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
+            <sc-if value="{{ errors.email }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.email }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="tag" style="width:14px;height:14px;color:#B4923F;"></i>Asunto</label>
+            <input type="text" value="{{ fields.asunto }}" onChange="{{ onChangeAsunto }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
+            <sc-if value="{{ errors.asunto }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.asunto }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje (opcional)</label>
+            <textarea value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
+          </div>
+          <button type="submit" style="background:#B4923F;color:#0A1220;padding:14px 24px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">Enviar consulta</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <section style="background:#0A1220;padding:70px 32px;">
+    <div style="maxWidth:900px;margin:0 auto;textAlign:center;">
+      <h2 style="fontFamily:'Spectral',serif;fontSize:26px;fontWeight:600;color:#F7F4EC;margin:0 0 22px;">Urgencias Penales: +54 9 11 3802-4907</h2>
+      <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="display:inline-flex;alignItems:center;gap:10px;background:#B4923F;color:#0A1220;padding:16px 32px;borderRadius:2px;fontSize:15px;fontWeight:600;textDecoration:none;">
+        <i data-lucide="message-circle" style="width:17px;height:17px;"></i>Escribir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,380px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    fields: { nombre: '', email: '', asunto: '', mensaje: '' },
+    errors: {},
+    submitted: false
+  };
+
+  areas = [
+    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal' },
+    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial' },
+    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas' },
+    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia' },
+    { name: 'Divorcio Digital Express', icon: 'zap', href: '/divorcio-digital-express' },
+    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional' },
+    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral' },
+    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo' },
+    { name: 'Delitos Informáticos', icon: 'lock', href: '/delitos-informaticos' },
+    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo', badge: 'Nueva área' }
+  ];
+
+  summaries = [
+    { title: 'Derecho Penal', icon: 'gavel', text: 'Asesoramiento integral en cuestiones criminales, correccionales, federales, penal económico, tributario, contravencional y de faltas.' },
+    { title: 'Derecho Civil y Comercial', icon: 'file-text', text: 'Recupero de carteras morosas, negociación de créditos en mora, concursos y quiebras, verificación de créditos, ejecuciones y contratos.' },
+    { title: 'Derecho de Familia', icon: 'users', text: 'Divorcio vincular, separación personal, nulidad de matrimonio, liquidación de sociedad conyugal, medidas cautelares, convenios y alimentos.' },
+    { title: 'Derecho Laboral', icon: 'briefcase', text: 'Asesoramiento y redacción de contratos laborales por tiempo indefinido, temporales o a honorarios; suspensión, terminación y resolución de la relación laboral.' }
+  ];
+
+  casos = [
+    { name: 'Caso Fernando Báez Sosa (Rugbiers)' },
+    { name: 'Caso Generación Zoe / Cositorto' },
+    { name: 'Caso "El Pepo"' },
+    { name: 'Defensa en casos de jurisdicción internacional (FIFA / futbolistas)' }
+  ];
+
+  componentDidMount() { this.refreshIcons(); }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  setField(key, value) {
+    this.setState(s => ({ fields: { ...s.fields, [key]: value } }));
+  }
+
+  validate(fields) {
+    const errors = {};
+    if (!fields.nombre.trim()) errors.nombre = 'Ingresá tu nombre completo.';
+    if (!fields.email.trim()) errors.email = 'Ingresá tu correo electrónico.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) errors.email = 'Ingresá un correo válido.';
+    if (!fields.asunto.trim()) errors.asunto = 'Ingresá el asunto de tu consulta.';
+    return errors;
+  }
+
+  renderVals() {
+    const { fields, errors, submitted } = this.state;
+    return {
+      areas: this.areas,
+      summaries: this.summaries,
+      casos: this.casos,
+      fields,
+      errors,
+      submitted,
+      onChangeNombre: (e) => this.setField('nombre', e.target.value),
+      onChangeEmail: (e) => this.setField('email', e.target.value),
+      onChangeAsunto: (e) => this.setField('asunto', e.target.value),
+      onChangeMensaje: (e) => this.setField('mensaje', e.target.value),
+      handleSubmit: (e) => {
+        e.preventDefault();
+        const errs = this.validate(this.state.fields);
+        if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
+        this.setState({ errors: {}, submitted: true });
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

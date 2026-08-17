@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Áreas de practica | Miguel Angel Pierri</title>
+  <meta name="description" content="Áreas de práctica del Estudio Miguel Ángel Pierri &amp; Abogados: Derecho Penal, Civil, Familia, Laboral, Previsional, Administrativo, Deportivo y más."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body{margin:0;background:#F7F4EC}
+    a{color:#1B3358}
+    a:hover{color:#8C7130}
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<div style="fontFamily:'Work Sans',sans-serif;color:#171B24;">
+  <div style="position:sticky;top:0;zIndex:1000;">
+    <dc-import name="Header" hint-size="100%,80px"></dc-import>
+    <dc-import name="UrgenciasBar" hint-size="100%,62px"></dc-import>
+  </div>
+
+  <section style="background:#0A1220;padding:90px 32px 70px;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Estudio Miguel Ángel Pierri &amp; Abogados</span>
+      <h1 style="fontFamily:'Spectral',serif;fontSize:48px;fontWeight:600;color:#F7F4EC;margin:14px 0 18px;">Áreas de Práctica</h1>
+      <p style="fontSize:15.5px;color:#9BA0AD;lineHeight:1.7;margin:0;">Diez especialidades bajo un mismo estudio, con más de 33 años de experiencia en Derecho Penal y disciplinas conexas.</p>
+    </div>
+  </section>
+
+  <section style="padding:72px 32px 88px;">
+    <div style="maxWidth:1100px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr;gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
+      <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
+        <div style="position:relative;background:#FFFFFF;padding:36px;display:flex;flexDirection:column;gap:16px;">
+          <sc-if value="{{ area.badge }}">
+            <span style="position:absolute;top:20px;right:20px;fontSize:9.5px;fontWeight:600;letterSpacing:0.5px;textTransform:uppercase;color:#0A1220;background:#B4923F;padding:3px 8px;borderRadius:2px;">{{ area.badge }}</span>
+          </sc-if>
+          <i data-lucide="{{ area.icon }}" style="width:30px;height:30px;color:#B4923F;"></i>
+          <h3 style="fontFamily:'Spectral',serif;fontSize:21px;fontWeight:600;color:#0A1220;margin:0;">{{ area.name }}</h3>
+          <p style="fontSize:14px;color:#5B6270;lineHeight:1.55;margin:0;flex:1;">{{ area.text }}</p>
+          <a href="{{ area.href }}" style="fontSize:13.5px;fontWeight:600;color:#0A1220;textDecoration:none;display:inline-flex;alignItems:center;gap:6px;">Ver más <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;borderTop:1px solid #E4DFD3;padding:80px 32px;">
+    <div style="maxWidth:560px;margin:0 auto;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Contacto</span>
+      <h2 style="fontFamily:'Spectral',serif;fontSize:26px;fontWeight:600;color:#0A1220;margin:12px 0 28px;">¿En qué área necesitás asesoramiento?</h2>
+
+      <sc-if value="{{ submitted }}">
+        <div style="background:#F7F4EC;border:1px solid #E4DFD3;padding:26px;borderRadius:2px;">
+          <p style="fontSize:14.5px;color:#0A1220;margin:0;">Gracias, recibimos tu consulta. Nos pondremos en contacto a la brevedad.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ !submitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ handleSubmit }}" style="display:flex;flexDirection:column;gap:18px;">
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre completo</label>
+            <input type="text" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.nombre }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.nombre }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="at-sign" style="width:14px;height:14px;color:#B4923F;"></i>Correo electrónico</label>
+            <input type="text" value="{{ fields.email }}" onChange="{{ onChangeEmail }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.email }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.email }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="list-checks" style="width:14px;height:14px;color:#B4923F;"></i>Área de interés</label>
+            <select value="{{ fields.area }}" onChange="{{ onChangeArea }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
+              <option value="">Seleccioná un área</option>
+              <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
+                <option value="{{ area.name }}">{{ area.name }}</option>
+              </sc-for>
+            </select>
+            <sc-if value="{{ errors.area }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.area }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje</label>
+            <textarea value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
+          </div>
+          <button type="submit" style="background:#B4923F;color:#0A1220;padding:14px 24px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">Enviar consulta</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,380px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    fields: { nombre: '', email: '', area: '', mensaje: '' },
+    errors: {},
+    submitted: false
+  };
+
+  areas = [
+    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal', text: 'Defensa integral en causas criminales, correccionales, federales, penal económico y tributario.' },
+    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial', text: 'Recupero de carteras, concursos y quiebras, ejecuciones y contratos.' },
+    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas', text: 'Registro y protección de marcas ante el organismo competente.' },
+    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia', text: 'Divorcios, convenios, alimentos y liquidación de sociedad conyugal.' },
+    { name: 'Divorcio Digital Express', icon: 'zap', href: '/divorcio-digital-express', text: 'Trámite de divorcio ágil y completamente digital.' },
+    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional', text: 'Jubilaciones, pensiones y reclamos ante organismos previsionales.' },
+    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral', text: 'Contratos, despidos y conflictos en la relación de trabajo.' },
+    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo', text: 'Asesoramiento frente a la Administración Pública y sus organismos.' },
+    { name: 'Delitos Informáticos', icon: 'lock', href: '/delitos-informaticos', text: 'Defensa en ciberdelitos, fraudes digitales y delitos tecnológicos.' },
+    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo', text: 'Representación de deportistas y clubes ante organismos deportivos internacionales.', badge: 'Nuevo' }
+  ];
+
+  componentDidMount() { this.refreshIcons(); }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  setField(key, value) { this.setState(s => ({ fields: { ...s.fields, [key]: value } })); }
+
+  validate(fields) {
+    const errors = {};
+    if (!fields.nombre.trim()) errors.nombre = 'Ingresá tu nombre completo.';
+    if (!fields.email.trim()) errors.email = 'Ingresá tu correo electrónico.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) errors.email = 'Ingresá un correo válido.';
+    if (!fields.area) errors.area = 'Seleccioná un área de interés.';
+    return errors;
+  }
+
+  renderVals() {
+    const { fields, errors, submitted } = this.state;
+    return {
+      areas: this.areas,
+      fields, errors, submitted,
+      onChangeNombre: (e) => this.setField('nombre', e.target.value),
+      onChangeEmail: (e) => this.setField('email', e.target.value),
+      onChangeArea: (e) => this.setField('area', e.target.value),
+      onChangeMensaje: (e) => this.setField('mensaje', e.target.value),
+      handleSubmit: (e) => {
+        e.preventDefault();
+        const errs = this.validate(this.state.fields);
+        if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
+        this.setState({ errors: {}, submitted: true });
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

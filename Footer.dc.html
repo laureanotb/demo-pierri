@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body{margin:0}
+    a{color:#EDEAE0}
+    a:hover{color:#D4B96A}
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<footer style="background:#0A1220;fontFamily:'Work Sans',sans-serif;borderTop:1px solid rgba(180,146,63,0.35);">
+  <div style="max-width:1440px;margin:0 auto;padding:64px 32px 40px;display:grid;gridTemplateColumns:1.3fr 0.9fr 0.9fr 0.9fr;gap:40px;">
+    <div style="display:flex;flexDirection:column;gap:18px;">
+      <div style="display:flex;flexDirection:column;lineHeight:1.15;">
+        <span style="fontFamily:'Spectral',serif;fontSize:19px;fontWeight:600;color:#F7F4EC;">Miguel Ángel Pierri</span>
+        <span style="fontSize:10.5px;fontWeight:500;color:#B4923F;letterSpacing:2px;textTransform:uppercase;">&amp; Abogados Corporativos</span>
+      </div>
+      <p style="fontSize:13.5px;color:#9BA0AD;lineHeight:1.6;margin:0;maxWidth:340px;">Defensa penal de alto perfil. Más de 33 años de trayectoria en casos de repercusión nacional.</p>
+
+      <a href="{{ mapsHref }}" target="_blank" rel="noopener" style="display:flex;alignItems:flex-start;gap:10px;fontSize:13.5px;textDecoration:none;color:#C9C4B6;">
+        <i data-lucide="map-pin" style="width:16px;height:16px;color:#B4923F;flexShrink:0;marginTop:1px;"></i>
+        Esmeralda 517 – 3° piso, CABA
+      </a>
+      <div style="display:flex;flexDirection:column;gap:6px;">
+        <a href="{{ telHref }}" style="display:flex;alignItems:center;gap:10px;fontSize:13.5px;textDecoration:none;color:#C9C4B6;">
+          <i data-lucide="phone" style="width:16px;height:16px;color:#B4923F;flexShrink:0;"></i>+54 9 11 3802-4907
+        </a>
+        <a href="{{ waHref }}" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:10px;fontSize:13.5px;textDecoration:none;color:#C9C4B6;">
+          <i data-lucide="message-circle" style="width:16px;height:16px;color:#B4923F;flexShrink:0;"></i>Escribir por WhatsApp
+        </a>
+      </div>
+
+      <div style="display:flex;alignItems:center;gap:10px;marginTop:8px;">
+        <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.href }}" target="_blank" rel="noopener" style="display:flex;alignItems:center;justifyContent:center;width:34px;height:34px;border:1px solid rgba(180,146,63,0.35);borderRadius:2px;color:#C9C4B6;" style-hover="borderColor:#B4923F;color:#D4B96A;">
+            <i data-lucide="{{ s.icon }}" style="width:15px;height:15px;"></i>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flexDirection:column;gap:12px;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:1.5px;textTransform:uppercase;color:#B4923F;marginBottom:6px;">Áreas de Práctica</span>
+      <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
+        <a href="{{ area.href }}" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">{{ area.name }}</a>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flexDirection:column;gap:12px;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:1.5px;textTransform:uppercase;color:#B4923F;marginBottom:6px;">Estudio</span>
+      <a href="/trayectoria" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Trayectoria</a>
+      <a href="/casos-resonantes" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Casos Resonantes</a>
+      <a href="/clientes" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Clientes</a>
+      <a href="/codigo-pierri" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Código Pierri</a>
+      <a href="/actividades" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Fundación Abogados Sin Fronteras</a>
+      <a href="/libro" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Libro</a>
+    </div>
+
+    <div style="display:flex;flexDirection:column;gap:12px;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:1.5px;textTransform:uppercase;color:#B4923F;marginBottom:6px;">Prensa &amp; Recursos</span>
+      <a href="/noticias-destacadas" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Noticias Destacadas</a>
+      <a href="/area-lectura" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Área Lectura</a>
+      <a href="/corresponsales" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Corresponsales</a>
+      <a href="/pierri-online" style="fontSize:13.5px;textDecoration:none;color:#C9C4B6;">Pierri Online</a>
+    </div>
+  </div>
+
+  <div style="maxWidth:1440px;margin:0 auto;padding:22px 32px;borderTop:1px solid rgba(180,146,63,0.2);display:flex;alignItems:center;justifyContent:space-between;flexWrap:wrap;gap:12px;">
+    <span style="fontSize:12px;color:#6E7480;">© {{ year }} Estudio Miguel Ángel Pierri &amp; Abogados. Todos los derechos reservados.</span>
+    <a href="/politica-de-privacidad" style="fontSize:12px;textDecoration:none;color:#8A8F9A;">Política de Privacidad</a>
+  </div>
+</footer>
+
+<button onClick="{{ scrollTop }}" aria-label="Volver arriba" style="{{ topBtnStyle }}" style-hover="background:#B4923F;color:#0A1220;borderColor:#B4923F;">
+  <i data-lucide="arrow-up" style="width:18px;height:18px;"></i>
+</button>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:420}}">
+class Component extends DCLogic {
+  areas = [
+    { name: 'Derecho Penal', href: '/derecho-penal' },
+    { name: 'Derecho Civil y Comercial', href: '/derecho-civil-y-comercial' },
+    { name: 'Registro de Marcas', href: '/registro-de-marcas' },
+    { name: 'Derecho de Familia', href: '/derecho-de-familia' },
+    { name: 'Divorcio Digital Express', href: '/divorcio-digital-express' },
+    { name: 'Derecho Previsional', href: '/derecho-previsional' },
+    { name: 'Derecho Laboral', href: '/derecho-laboral' },
+    { name: 'Derecho Administrativo', href: '/derecho-administrativo' },
+    { name: 'Delitos Informáticos', href: '/delitos-informaticos' },
+    { name: 'Derecho Deportivo', href: '/derecho-deportivo' }
+  ];
+  socials = [
+    { icon: 'at-sign', href: '#' },
+    { icon: 'globe', href: '#' },
+    { icon: 'send', href: '#' },
+    { icon: 'rss', href: '#' }
+  ];
+
+  state = { showTop: false };
+
+  componentDidMount() {
+    this.refreshIcons();
+    this.onScroll = () => {
+      const el = document.scrollingElement || document.documentElement;
+      const y = window.scrollY || el.scrollTop || 0;
+      const show = y > 500;
+      if (show !== this.state.showTop) this.setState({ showTop: show });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, { capture: true });
+  }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  renderVals() {
+    return {
+      areas: this.areas,
+      socials: this.socials,
+      scrollTop: () => {
+        const el = document.scrollingElement || document.documentElement;
+        if (el && el.scrollTo) el.scrollTo({ top: 0, behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+      topBtnStyle: 'position:fixed;right:26px;bottom:26px;zIndex:1200;width:48px;height:48px;display:flex;alignItems:center;justifyContent:center;border:1px solid rgba(180,146,63,0.6);borderRadius:50%;background:rgba(10,18,32,0.92);color:#D4B96A;cursor:pointer;boxShadow:0 8px 26px rgba(0,0,0,0.28);backdropFilter:blur(6px);transition:opacity .35s ease, transform .35s cubic-bezier(.16,1,.3,1), background-color .25s ease, color .25s ease, border-color .25s ease;'
+        + (this.state.showTop ? 'opacity:1;transform:translateY(0);pointerEvents:auto;' : 'opacity:0;transform:translateY(14px);pointerEvents:none;'),
+      year: new Date().getFullYear(),
+      mapsHref: 'https://www.google.com/maps/search/?api=1&query=Esmeralda+517+3+piso+Buenos+Aires',
+      telHref: 'tel:+5491138024907',
+      waHref: 'https://wa.me/5491138024907'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

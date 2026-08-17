@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Derecho Deportivo | Asesoramiento Legal a Futbolistas y Clubes | Miguel Angel Pierri</title>
+  <meta name="description" content="Asesoramiento legal en Derecho Deportivo: contratos de futbolistas, litigios ante FIFA, transferencias internacionales y defensa penal de deportistas. +33 años de trayectoria."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body{margin:0;background:#F7F4EC}
+    a{color:#1B3358}
+    a:hover{color:#8C7130}
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<div style="fontFamily:'Work Sans',sans-serif;color:#171B24;">
+  <div style="position:sticky;top:0;zIndex:1000;">
+    <dc-import name="Header" hint-size="100%,80px"></dc-import>
+    <dc-import name="UrgenciasBar" hint-size="100%,62px"></dc-import>
+  </div>
+
+  <section style="background:#0A1220;padding:90px 32px 70px;">
+    <div style="maxWidth:720px;margin:0 auto;textAlign:center;">
+      <i data-lucide="trophy" style="width:48px;height:48px;color:#B4923F;"></i>
+      <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;margin:20px 0 12px;">Área de Práctica</span>
+      <h1 style="fontFamily:'Spectral',serif;fontSize:46px;fontWeight:600;color:#F7F4EC;margin:0 0 14px;">Derecho Deportivo</h1>
+      <p style="fontSize:15.5px;color:#9BA0AD;margin:0;">Asesoramiento legal integral para futbolistas, clubes y dirigentes</p>
+    </div>
+  </section>
+
+  <section style="padding:72px 32px 0;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <p style="fontFamily:'Spectral',serif;fontSize:21px;lineHeight:1.6;color:#0A1220;margin:0;">Nos especializamos en la intersección entre el derecho penal, el derecho laboral y el mundo del fútbol profesional, con trayectoria comprobada en casos de jugadores extranjeros en Argentina y litigios de repercusión internacional.</p>
+    </div>
+  </section>
+
+  <section style="padding:64px 32px 88px;">
+    <div style="maxWidth:1000px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr 1fr;gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
+      <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="6">
+        <div style="background:#FFFFFF;padding:26px 22px;display:flex;flexDirection:column;gap:12px;">
+          <i data-lucide="{{ s.icon }}" style="width:22px;height:22px;color:#B4923F;"></i>
+          <span style="fontSize:14px;color:#171B24;lineHeight:1.45;">{{ s.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#0F1B30;padding:80px 32px;">
+    <div style="maxWidth:900px;margin:0 auto;">
+      <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;marginBottom:16px;">Casos</span>
+      <h2 style="fontFamily:'Spectral',serif;fontSize:26px;fontWeight:600;color:#F7F4EC;margin:0 0 20px;">Trayectoria comprobada en el fútbol profesional</h2>
+      <p style="fontSize:14.5px;color:#C9C4B6;lineHeight:1.75;margin:0 0 24px;">El Dr. Pierri fue abogado defensor de los futbolistas colombianos Edwin Cardona y Wilmar Barrios en una causa penal de repercusión internacional, obteniendo su sobreseimiento. El estudio también realizó cobertura y análisis del caso conocido como "FIFA Gate" y de causas vinculadas a la Fundación Messi.</p>
+      <a href="/casos-resonantes" style="fontSize:13.5px;fontWeight:600;color:#D4B96A;textDecoration:none;">Ver detalle de casos resonantes →</a>
+    </div>
+  </section>
+
+  <section style="padding:80px 32px;">
+    <div style="maxWidth:560px;margin:0 auto;">
+      <span style="fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Consulta</span>
+      <h2 style="fontFamily:'Spectral',serif;fontSize:26px;fontWeight:600;color:#0A1220;margin:12px 0 28px;">Contanos tu caso deportivo</h2>
+
+      <sc-if value="{{ submitted }}">
+        <div style="background:#FFFFFF;border:1px solid #E4DFD3;padding:26px;borderRadius:2px;">
+          <p style="fontSize:14.5px;color:#0A1220;margin:0;">Gracias, recibimos tu consulta. Nos pondremos en contacto a la brevedad.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ !submitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ handleSubmit }}" style="display:flex;flexDirection:column;gap:18px;">
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre</label>
+            <input type="text" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.nombre }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.nombre }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="shield" style="width:14px;height:14px;color:#B4923F;"></i>Club / Representante (opcional)</label>
+            <input type="text" value="{{ fields.club }}" onChange="{{ onChangeClub }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="at-sign" style="width:14px;height:14px;color:#B4923F;"></i>Correo electrónico</label>
+            <input type="text" value="{{ fields.email }}" onChange="{{ onChangeEmail }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.email }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.email }}</span></sc-if>
+          </div>
+          <div>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje</label>
+            <textarea value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
+          </div>
+          <button type="submit" style="background:#B4923F;color:#0A1220;padding:14px 24px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">Enviar consulta</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <section style="background:#0A1220;padding:64px 32px;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <h2 style="fontFamily:'Spectral',serif;fontSize:24px;fontWeight:600;color:#F7F4EC;margin:0 0 22px;">Urgencias Penales: +54 9 11 3802-4907</h2>
+      <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="display:inline-flex;alignItems:center;gap:8px;background:#B4923F;color:#0A1220;padding:14px 26px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;">
+        <i data-lucide="message-circle" style="width:16px;height:16px;"></i>Escribir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,380px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { fields: { nombre: '', club: '', email: '', mensaje: '' }, errors: {}, submitted: false };
+
+  servicios = [
+    { icon: 'file-signature', text: 'Contratos de futbolistas y representación (transferencias, cesiones, rescisiones)' },
+    { icon: 'scale', text: 'Litigios y reclamos ante FIFA / TAS (Tribunal de Arbitraje Deportivo)' },
+    { icon: 'gavel', text: 'Defensa penal de deportistas en causas dentro y fuera del país' },
+    { icon: 'building-2', text: 'Asesoramiento a clubes y dirigentes en cuestiones administrativas y disciplinarias' },
+    { icon: 'image', text: 'Derechos de imagen y marcas personales de deportistas' },
+    { icon: 'plane', text: 'Régimen migratorio y laboral de jugadores extranjeros' }
+  ];
+
+  componentDidMount() { this.refreshIcons(); }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  setField(key, value) { this.setState(s => ({ fields: { ...s.fields, [key]: value } })); }
+
+  validate(fields) {
+    const errors = {};
+    if (!fields.nombre.trim()) errors.nombre = 'Ingresá tu nombre.';
+    if (!fields.email.trim()) errors.email = 'Ingresá tu correo electrónico.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) errors.email = 'Ingresá un correo válido.';
+    return errors;
+  }
+
+  renderVals() {
+    const { fields, errors, submitted } = this.state;
+    return {
+      servicios: this.servicios,
+      fields, errors, submitted,
+      onChangeNombre: (e) => this.setField('nombre', e.target.value),
+      onChangeClub: (e) => this.setField('club', e.target.value),
+      onChangeEmail: (e) => this.setField('email', e.target.value),
+      onChangeMensaje: (e) => this.setField('mensaje', e.target.value),
+      handleSubmit: (e) => {
+        e.preventDefault();
+        const errs = this.validate(this.state.fields);
+        if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
+        this.setState({ errors: {}, submitted: true });
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

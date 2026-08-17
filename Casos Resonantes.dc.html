@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Casos Resonantes | Miguel Angel Pierri</title>
+  <meta name="description" content="Casos resonantes del Estudio Miguel Ángel Pierri &amp; Abogados: cobertura editorial de causas penales de alto perfil en Argentina."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body{margin:0;background:#F7F4EC}
+    a{color:#1B3358}
+    a:hover{color:#8C7130}
+  
+    html{scroll-behavior:smooth}
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2){animation-delay:.06s}
+    section:nth-of-type(3){animation-delay:.12s}
+    section:nth-of-type(4){animation-delay:.18s}
+    section:nth-of-type(5){animation-delay:.24s}
+    section:nth-of-type(6){animation-delay:.3s}
+    section:nth-of-type(n+7){animation-delay:.36s}
+    a, button { transition: color .25s ease, background-color .25s ease, border-color .25s ease, opacity .25s ease, transform .18s cubic-bezier(.16,1,.3,1), box-shadow .25s ease; }
+    a:active, button:active { transform: scale(0.97); }
+  
+    html { scroll-behavior: smooth; }
+    @keyframes dcFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes dcFadeIn { from { opacity:0; } to { opacity:1; } }
+    body { animation: dcFadeIn .45s ease both; }
+    section { animation: dcFadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    section:nth-of-type(2) { animation-delay:.07s; }
+    section:nth-of-type(3) { animation-delay:.14s; }
+    section:nth-of-type(4) { animation-delay:.21s; }
+    section:nth-of-type(5) { animation-delay:.28s; }
+    section:nth-of-type(6) { animation-delay:.35s; }
+    section:nth-of-type(n+7) { animation-delay:.42s; }
+    a, button, summary, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, opacity .28s ease, box-shadow .28s ease, transform .2s cubic-bezier(.16,1,.3,1), letter-spacing .28s ease, filter .28s ease;
+    }
+    a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
+    img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      body, section { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  
+    body { animation: dcFadeIn .6s ease both; }
+    a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
+    a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
+    a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+  </style>
+  <script src="./reveal.js"></script>
+</helmet>
+<div style="fontFamily:'Work Sans',sans-serif;color:#171B24;">
+  <div style="position:sticky;top:0;zIndex:1000;">
+    <dc-import name="Header" hint-size="100%,80px"></dc-import>
+    <dc-import name="UrgenciasBar" hint-size="100%,62px"></dc-import>
+  </div>
+
+  <section style="background:#0A1220;padding:90px 32px 60px;">
+    <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
+      <i data-lucide="scale" style="width:36px;height:36px;color:#B4923F;marginBottom:14px;"></i>
+      <span style="display:block;fontSize:12px;fontWeight:600;letterSpacing:2px;textTransform:uppercase;color:#B4923F;">Sala de Prensa</span>
+      <h1 style="fontFamily:'Spectral',serif;fontSize:46px;fontWeight:600;color:#F7F4EC;margin:14px 0 16px;">Casos Resonantes</h1>
+      <p style="fontSize:15px;color:#9BA0AD;lineHeight:1.7;margin:0;">Archivo editorial de causas de alto perfil en las que intervino el Estudio Miguel Ángel Pierri &amp; Abogados.</p>
+    </div>
+  </section>
+
+  <section style="padding:44px 32px 0;">
+    <div style="maxWidth:1100px;margin:0 auto;display:flex;gap:10px;flexWrap:wrap;justifyContent:center;">
+      <sc-for list="{{ categorias }}" as="cat" hint-placeholder-count="5">
+        <button onClick="{{ cat.select }}" style="display:flex;alignItems:center;gap:7px;border:1px solid {{ cat.borderColor }};background:{{ cat.bg }};color:{{ cat.color }};padding:9px 18px;borderRadius:2px;fontSize:13px;fontWeight:600;cursor:pointer;fontFamily:'Work Sans',sans-serif;"><i data-lucide="{{ cat.icon }}" style="width:14px;height:14px;"></i>{{ cat.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:44px 32px 96px;">
+    <div style="maxWidth:1100px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr;gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
+      <sc-for list="{{ casosFiltrados }}" as="caso" hint-placeholder-count="9">
+        <div style="background:#FFFFFF;padding:30px;display:flex;flexDirection:column;gap:14px;">
+          <span style="alignSelf:flex-start;display:flex;alignItems:center;gap:6px;fontSize:10px;fontWeight:600;letterSpacing:1px;textTransform:uppercase;color:{{ caso.badgeColor }};background:{{ caso.badgeBg }};padding:4px 10px;borderRadius:2px;"><i data-lucide="{{ caso.badgeIcon }}" style="width:11px;height:11px;"></i>{{ caso.categoria }}</span>
+          <h3 style="fontFamily:'Spectral',serif;fontSize:19px;fontWeight:600;color:#0A1220;margin:0;">{{ caso.title }}</h3>
+          <p style="fontSize:13.5px;color:#5B6270;lineHeight:1.6;margin:0;flex:1;">{{ caso.summary }}</p>
+          <div style="display:flex;alignItems:center;justifyContent:space-between;gap:12px;">
+            <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="fontSize:13px;fontWeight:600;color:#0A1220;textDecoration:none;">Consultar por este caso →</a>
+            <sc-if value="{{ caso.crossLink }}">
+              <a href="{{ caso.crossLink }}" style="fontSize:12px;fontWeight:600;color:#8C7130;textDecoration:none;">{{ caso.crossLabel }}</a>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,380px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filtro: 'Todos' };
+
+  colors = {
+    Penal: { color: '#8C1F1F', bg: 'rgba(140,31,31,0.08)', icon: 'gavel' },
+    Deportivo: { color: '#1B5E3A', bg: 'rgba(27,94,58,0.08)', icon: 'trophy' },
+    'Económico': { color: '#8C7130', bg: 'rgba(140,113,48,0.1)', icon: 'landmark' },
+    Familia: { color: '#3A4E8C', bg: 'rgba(58,78,140,0.08)', icon: 'users' }
+  };
+  catIcons = { Todos: 'layout-grid', Penal: 'gavel', Deportivo: 'trophy', 'Económico': 'landmark', Familia: 'users' };
+
+  casos = [
+    { title: 'Caso Fernando Báez Sosa (Rugbiers de Zárate)', categoria: 'Penal', summary: 'Cobertura mediática extensa del Dr. Pierri sobre el desarrollo del juicio y el análisis de la estrategia de defensa.' },
+    { title: 'Caso Generación Zoe / Leonardo Cositorto', categoria: 'Económico', summary: 'Análisis jurídico de la causa por presunta estafa piramidal que involucró a miles de damnificados.' },
+    { title: 'Caso "El Pepo" (Rubén Castiñeiras)', categoria: 'Penal', summary: 'Cobertura de la causa penal derivada del accidente vial de alto perfil mediático.' },
+    { title: 'Caso Cardona y Barrios', categoria: 'Deportivo', summary: 'Defensa de los futbolistas colombianos Edwin Cardona y Wilmar Barrios en una causa penal de repercusión internacional, con sobreseimiento.', crossLink: '/derecho-deportivo', crossLabel: 'Ver Derecho Deportivo →' },
+    { title: 'Caso Fundación Messi', categoria: 'Deportivo', summary: 'Intervención en causas vinculadas a la Fundación Messi.', crossLink: '/derecho-deportivo', crossLabel: 'Ver Derecho Deportivo →' },
+    { title: 'Caso Grau', categoria: 'Penal', summary: 'Cobertura editorial de una causa penal de alto perfil mediático.' },
+    { title: 'Caso "Los Monos"', categoria: 'Penal', summary: 'Análisis de una de las causas de crimen organizado más resonantes del país.' },
+    { title: 'Triple Crimen de General Rodríguez', categoria: 'Penal', summary: 'Cobertura editorial de una de las causas penales de mayor impacto público en Argentina.' },
+    { title: 'Caso Lucio Dupuy', categoria: 'Familia', summary: 'Seguimiento del caso que derivó en un fuerte debate público sobre violencia intrafamiliar.' }
+  ];
+
+  componentDidMount() { this.refreshIcons(); }
+  componentDidUpdate() { this.refreshIcons(); }
+  refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
+
+  renderVals() {
+    const { filtro } = this.state;
+    const cats = ['Todos', 'Penal', 'Deportivo', 'Económico', 'Familia'];
+    const categorias = cats.map(c => {
+      const active = filtro === c;
+      const col = this.colors[c] || { color: '#0A1220', bg: 'transparent' };
+      return {
+        label: c,
+        icon: this.catIcons[c],
+        select: () => this.setState({ filtro: c }),
+        color: active ? '#F7F4EC' : (c === 'Todos' ? '#0A1220' : col.color),
+        bg: active ? '#0A1220' : (c === 'Todos' ? '#FFFFFF' : col.bg),
+        borderColor: active ? '#0A1220' : '#D8D2C2'
+      };
+    });
+
+    const casosFiltrados = this.casos
+      .filter(c => filtro === 'Todos' || c.categoria === filtro)
+      .map(c => ({ ...c, badgeColor: (this.colors[c.categoria] || {}).color, badgeBg: (this.colors[c.categoria] || {}).bg, badgeIcon: (this.colors[c.categoria] || {}).icon }));
+
+    return { categorias, casosFiltrados };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/Inicio.dc.html" },
+    { "source": "/trayectoria", "destination": "/Trayectoria.dc.html" },
+    { "source": "/areas-de-practica", "destination": "/Areas%20de%20Practica.dc.html" },
+    { "source": "/casos-resonantes", "destination": "/Casos%20Resonantes.dc.html" },
+    { "source": "/clientes", "destination": "/Clientes.dc.html" },
+    { "source": "/codigo-pierri", "destination": "/Codigo%20Pierri.dc.html" },
+    { "source": "/actividades", "destination": "/Actividades.dc.html" },
+    { "source": "/libro", "destination": "/Libro.dc.html" },
+    { "source": "/politica-de-privacidad", "destination": "/Politica%20de%20Privacidad.dc.html" },
+    { "source": "/derecho-penal", "destination": "/Derecho%20Penal.dc.html" },
+    { "source": "/derecho-civil-y-comercial", "destination": "/Derecho%20Civil%20y%20Comercial.dc.html" },
+    { "source": "/derecho-de-familia", "destination": "/Derecho%20de%20Familia.dc.html" },
+    { "source": "/derecho-deportivo", "destination": "/Derecho%20Deportivo.dc.html" },
+    { "source": "/derecho-administrativo", "destination": "/Derecho%20Administrativo.dc.html" },
+    { "source": "/derecho-laboral", "destination": "/Derecho%20Laboral.dc.html" },
+    { "source": "/derecho-previsional", "destination": "/Derecho%20Previsional.dc.html" },
+    { "source": "/delitos-informaticos", "destination": "/Delitos%20Informaticos.dc.html" },
+    { "source": "/registro-de-marcas", "destination": "/Registro%20de%20Marcas.dc.html" },
+    { "source": "/divorcio-digital-express", "destination": "/Divorcio%20Digital%20Express.dc.html" },
+    { "source": "/corresponsales", "destination": "/Corresponsales.dc.html" },
+    { "source": "/pierri-online", "destination": "/Pierri%20Online.dc.html" },
+    { "source": "/noticias-destacadas", "destination": "/Noticias%20Destacadas.dc.html" },
+    { "source": "/area-lectura", "destination": "/Area%20Lectura.dc.html" },
+    { "source": "/sistema-de-diseno", "destination": "/Sistema%20de%20Dise%C3%B1o.dc.html" }
+  ]
+}
