@@ -96,12 +96,15 @@ img, svg { max-width: 100%; }
     @media (max-width: 860px) {
       div[style*="display:grid"][style*="repeat(4,1fr)"],
       div[style*="display:grid"][style*="repeat(5,1fr)"],
-      div[style*="display:grid"][style*="repeat(6,1fr)"] {
+      div[style*="display:grid"][style*="repeat(6,1fr)"],
+      div[style*="display: grid"][style*="repeat(4, 1fr)"],
+      div[style*="display: grid"][style*="repeat(5, 1fr)"],
+      div[style*="display: grid"][style*="repeat(6, 1fr)"] {
         grid-template-columns: repeat(2,1fr) !important;
       }
     }
     @media (max-width: 620px) {
-      div[style*="display:grid"] { grid-template-columns: 1fr !important; }
+      div[style*="display:grid"], div[style*="display: grid"] { grid-template-columns: 1fr !important; }
       h1 { font-size: 32px !important; line-height: 1.22 !important; }
     }
   </style>
