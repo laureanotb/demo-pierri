@@ -139,25 +139,15 @@ img, svg { max-width: 100%; }
 
   <section style="padding:72px 32px;">
     <div style="maxWidth:900px;margin:0 auto;display:grid;gridTemplateColumns:280px 1fr;gap:48px;alignItems:start;">
-      <div style="height:380px;background:#0F1B30;display:flex;alignItems:center;justifyContent:center;borderRadius:2px;">
-        <span style="fontFamily:'Spectral',serif;fontSize:14px;color:#B4923F;textAlign:center;padding:0 20px;">Tapa del libro<br/>"Cuando Todo es Violencia"</span>
+      <div style="borderRadius:2px;overflow:hidden;boxShadow:0 20px 44px rgba(10,18,32,0.18);">
+        <img src="./assets/libro-tapa.jpg" alt="Tapa del libro Cuando Todo es Violencia, de Miguel Ángel Pierri" style="width:100%;height:auto;display:block;">
       </div>
       <div>
         <h2 style="fontFamily:'Spectral',serif;fontSize:32px;fontWeight:600;color:#0A1220;margin:0 0 8px;">Cuando Todo es Violencia</h2>
         <span style="fontSize:13px;color:#8A8F9A;">Dr. Miguel Ángel Pierri</span>
-        <p style="fontSize:15px;color:#5B6270;lineHeight:1.75;margin:22px 0 28px;">En un presente asfixiante de violencia, el autor recorre casos emblemáticos y saca conclusiones esclarecedoras sobre los hechos que conmovieron recientemente la opinión pública.</p>
+        <p style="fontSize:15px;color:#5B6270;lineHeight:1.75;margin:22px 0 18px;">En un presente asfixiante de violencia, el autor recorre casos emblemáticos y saca conclusiones esclarecedoras sobre los hechos que conmovieron recientemente la opinión pública.</p>
+        <p style="display:flex;alignItems:center;gap:8px;fontSize:13px;color:#8A8F9A;margin:0 0 28px;"><i data-lucide="map-pin" style="width:14px;height:14px;color:#B4923F;flexShrink:0;"></i>Presentado en la Feria del Libro de Chilecito, 2018.</p>
         <a href="#contacto" style="display:inline-flex;alignItems:center;gap:8px;background:#B4923F;color:#0A1220;padding:13px 24px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;"><i data-lucide="shopping-bag" style="width:15px;height:15px;"></i>Dónde conseguirlo</a>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:#FFFFFF;borderTop:1px solid #E4DFD3;padding:72px 32px;">
-    <div style="maxWidth:1000px;margin:0 auto;">
-      <h2 style="fontFamily:'Spectral',serif;fontSize:24px;fontWeight:600;color:#0A1220;textAlign:center;margin:0 0 36px;">Presentación en la Feria del Libro de Chilecito 2018</h2>
-      <div style="display:grid;gridTemplateColumns:repeat(3,1fr);gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
-        <sc-for list="{{ fotos }}" as="f" hint-placeholder-count="3">
-          <div style="height:180px;background:repeating-linear-gradient(135deg,#EDEAE0,#EDEAE0 10px,#E4DFD3 10px,#E4DFD3 20px);display:flex;alignItems:center;justifyContent:center;fontSize:11.5px;color:#8A8F9A;textAlign:center;padding:12px;">{{ f }}</div>
-        </sc-for>
       </div>
     </div>
   </section>
@@ -178,10 +168,9 @@ img, svg { max-width: 100%; }
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  fotos = ['Presentación — Feria del Libro Chilecito 2018', 'Firma de ejemplares', 'Charla con el público'];
   componentDidMount() { if (window.lucide) window.lucide.createIcons(); }
   componentDidUpdate() { if (window.lucide) window.lucide.createIcons(); }
-  renderVals() { return { fotos: this.fotos }; }
+  renderVals() { return {}; }
 }
 
 </script>

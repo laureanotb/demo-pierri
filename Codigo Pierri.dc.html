@@ -142,8 +142,10 @@ img, svg { max-width: 100%; }
     <div style="maxWidth:1000px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr;gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
       <sc-for list="{{ episodios }}" as="ep" hint-placeholder-count="4">
         <div style="background:#FFFFFF;display:flex;flexDirection:column;">
-          <div style="height:170px;background:repeating-linear-gradient(135deg,#EDEAE0,#EDEAE0 10px,#E4DFD3 10px,#E4DFD3 20px);display:flex;alignItems:center;justifyContent:center;">
-            <i data-lucide="play" style="width:30px;height:30px;color:#B4923F;"></i>
+          <div style="height:170px;background:linear-gradient(135deg,#0F1B30,#0A1220);display:flex;alignItems:center;justifyContent:center;">
+            <span style="width:56px;height:56px;borderRadius:50%;border:1.5px solid rgba(180,146,63,0.5);display:flex;alignItems:center;justifyContent:center;">
+              <i data-lucide="play" style="width:22px;height:22px;color:#D4B96A;"></i>
+            </span>
           </div>
           <div style="padding:24px;">
             <span style="fontSize:11px;fontWeight:600;letterSpacing:1px;textTransform:uppercase;color:#B4923F;">Capítulo {{ ep.n }}</span>

@@ -145,11 +145,18 @@ img, svg { max-width: 100%; }
     </div>
   </section>
 
-  <section style="padding:56px 32px 96px;">
-    <div style="maxWidth:1100px;margin:0 auto;display:grid;gridTemplateColumns:repeat(4,1fr);gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
-      <sc-for list="{{ galeria }}" as="g" hint-placeholder-count="4">
-        <div style="height:160px;background:repeating-linear-gradient(135deg,#EDEAE0,#EDEAE0 10px,#E4DFD3 10px,#E4DFD3 20px);display:flex;alignItems:center;justifyContent:center;fontSize:11.5px;color:#8A8F9A;textAlign:center;padding:12px;">{{ g }}</div>
-      </sc-for>
+  <section style="padding:0 32px 96px;">
+    <div style="maxWidth:800px;margin:0 auto;display:grid;gridTemplateColumns:1fr 1fr;gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
+      <div style="background:#FFFFFF;padding:28px;display:flex;flexDirection:column;gap:10px;">
+        <i data-lucide="users" style="width:22px;height:22px;color:#B4923F;"></i>
+        <h3 style="fontFamily:'Spectral',serif;fontSize:17px;fontWeight:600;color:#0A1220;margin:0;">Juicio por Jurados</h3>
+        <p style="fontSize:13.5px;color:#5B6270;lineHeight:1.6;margin:0;">Encuentros académicos sobre el sistema de enjuiciamiento por jurados populares en Argentina.</p>
+      </div>
+      <div style="background:#FFFFFF;padding:28px;display:flex;flexDirection:column;gap:10px;">
+        <i data-lucide="globe" style="width:22px;height:22px;color:#B4923F;"></i>
+        <h3 style="fontFamily:'Spectral',serif;fontSize:17px;fontWeight:600;color:#0A1220;margin:0;">Abogados Sin Fronteras</h3>
+        <p style="fontSize:13.5px;color:#5B6270;lineHeight:1.6;margin:0;">Compromiso institucional del Dr. Pierri con el acceso a la justicia y la capacitación profesional.</p>
+      </div>
     </div>
   </section>
 
@@ -168,10 +175,9 @@ img, svg { max-width: 100%; }
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  galeria = ['Jornada de capacitación profesional', 'Encuentro académico — Juicio por Jurados', 'Actividad de la Fundación Abogados Sin Fronteras', 'Capacitación para abogados'];
   componentDidMount() { if (window.lucide) window.lucide.createIcons(); }
   componentDidUpdate() { if (window.lucide) window.lucide.createIcons(); }
-  renderVals() { return { galeria: this.galeria }; }
+  renderVals() { return {}; }
 }
 
 </script>
