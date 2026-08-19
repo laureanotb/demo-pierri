@@ -47,6 +47,9 @@
       #hero-text-wrap .hero-ctas{justify-content:center !important;}
     }
   
+    *, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
+img, svg { max-width: 100%; }
     html{scroll-behavior:smooth}
     @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
     section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
