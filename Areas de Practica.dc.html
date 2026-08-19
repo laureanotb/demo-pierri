@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-  <title>Áreas de practica | Miguel Angel Pierri</title>
+  <title>Áreas de Práctica | Miguel Angel Pierri</title>
   <meta name="description" content="Áreas de práctica del Estudio Miguel Ángel Pierri &amp; Abogados: Derecho Penal, Civil, Familia, Laboral, Previsional, Administrativo, Deportivo y más."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -48,14 +49,46 @@
     a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
     img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
     @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       body, section { animation: none !important; }
-      * { transition-duration: .01ms !important; }
     }
   
     body { animation: dcFadeIn .6s ease both; }
     a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
     a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
     a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(180,146,63,.25);
+      border-radius: 2px;
+    }
+    i[data-lucide] { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+    a:hover i[data-lucide="arrow-right"], a:hover i[data-lucide="arrow-up-right"] { transform: translateX(4px); }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a),
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a) {
+      transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1);
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover,
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(10,18,32,0.12);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.35);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover i[data-lucide],
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover i[data-lucide],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover i[data-lucide] {
+      transform: scale(1.15);
+    }
+    a[style*="background:#B4923F"]:hover, button[style*="background:#B4923F"]:hover {
+      box-shadow: 0 12px 28px rgba(180,146,63,0.32);
+    }
   </style>
   <script src="./reveal.js"></script>
 </helmet>
@@ -102,28 +135,28 @@
       <sc-if value="{{ !submitted }}" hint-placeholder-val="{{ true }}">
         <form onSubmit="{{ handleSubmit }}" style="display:flex;flexDirection:column;gap:18px;">
           <div>
-            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre completo</label>
-            <input type="text" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
-            <sc-if value="{{ errors.nombre }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.nombre }}</span></sc-if>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-nombre"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre completo</label>
+            <input id="field-nombre" type="text" autocomplete="name" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.nombre }}"><span role="alert" style="fontSize:12px;color:#B3452F;">{{ errors.nombre }}</span></sc-if>
           </div>
           <div>
-            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="at-sign" style="width:14px;height:14px;color:#B4923F;"></i>Correo electrónico</label>
-            <input type="text" value="{{ fields.email }}" onChange="{{ onChangeEmail }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
-            <sc-if value="{{ errors.email }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.email }}</span></sc-if>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-email"><i data-lucide="at-sign" style="width:14px;height:14px;color:#B4923F;"></i>Correo electrónico</label>
+            <input id="field-email" type="email" inputmode="email" autocomplete="email" value="{{ fields.email }}" onChange="{{ onChangeEmail }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
+            <sc-if value="{{ errors.email }}"><span role="alert" style="fontSize:12px;color:#B3452F;">{{ errors.email }}</span></sc-if>
           </div>
           <div>
-            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="list-checks" style="width:14px;height:14px;color:#B4923F;"></i>Área de interés</label>
-            <select value="{{ fields.area }}" onChange="{{ onChangeArea }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-area"><i data-lucide="list-checks" style="width:14px;height:14px;color:#B4923F;"></i>Área de interés</label>
+            <select id="field-area" value="{{ fields.area }}" onChange="{{ onChangeArea }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;">
               <option value="">Seleccioná un área</option>
               <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
                 <option value="{{ area.name }}">{{ area.name }}</option>
               </sc-for>
             </select>
-            <sc-if value="{{ errors.area }}"><span style="fontSize:12px;color:#B3452F;">{{ errors.area }}</span></sc-if>
+            <sc-if value="{{ errors.area }}"><span role="alert" style="fontSize:12px;color:#B3452F;">{{ errors.area }}</span></sc-if>
           </div>
           <div>
-            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje</label>
-            <textarea value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
+            <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-mensaje"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje</label>
+            <textarea id="field-mensaje" value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
           </div>
           <button type="submit" style="background:#B4923F;color:#0A1220;padding:14px 24px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">Enviar consulta</button>
         </form>
@@ -144,16 +177,16 @@ class Component extends DCLogic {
   };
 
   areas = [
-    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal', text: 'Defensa integral en causas criminales, correccionales, federales, penal económico y tributario.' },
-    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial', text: 'Recupero de carteras, concursos y quiebras, ejecuciones y contratos.' },
-    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas', text: 'Registro y protección de marcas ante el organismo competente.' },
-    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia', text: 'Divorcios, convenios, alimentos y liquidación de sociedad conyugal.' },
-    { name: 'Divorcio Digital Express', icon: 'zap', href: '/divorcio-digital-express', text: 'Trámite de divorcio ágil y completamente digital.' },
-    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional', text: 'Jubilaciones, pensiones y reclamos ante organismos previsionales.' },
-    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral', text: 'Contratos, despidos y conflictos en la relación de trabajo.' },
-    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo', text: 'Asesoramiento frente a la Administración Pública y sus organismos.' },
-    { name: 'Delitos Informáticos', icon: 'lock', href: '/delitos-informaticos', text: 'Defensa en ciberdelitos, fraudes digitales y delitos tecnológicos.' },
-    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo', text: 'Representación de deportistas y clubes ante organismos deportivos internacionales.', badge: 'Nuevo' }
+    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal/', text: 'Defensa integral en causas criminales, correccionales, federales, penal económico y tributario.' },
+    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial/', text: 'Recupero de carteras, concursos y quiebras, ejecuciones y contratos.' },
+    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas/', text: 'Registro y protección de marcas ante el organismo competente.' },
+    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia/', text: 'Divorcios, convenios, alimentos y liquidación de sociedad conyugal.' },
+    { name: 'Divorcio Digital Express', icon: 'zap', href: '/areas/divorcio-digital-express/', text: 'Trámite de divorcio ágil y completamente digital.' },
+    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional/', text: 'Jubilaciones, pensiones y reclamos ante organismos previsionales.' },
+    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral/', text: 'Contratos, despidos y conflictos en la relación de trabajo.' },
+    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo/', text: 'Asesoramiento frente a la Administración Pública y sus organismos.' },
+    { name: 'Delitos Informáticos', icon: 'lock', href: '/areas/delitos-informaticos/', text: 'Defensa en ciberdelitos, fraudes digitales y delitos tecnológicos.' },
+    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo/', text: 'Representación de deportistas y clubes ante organismos deportivos internacionales.', badge: 'Nuevo' }
   ];
 
   componentDidMount() { this.refreshIcons(); }

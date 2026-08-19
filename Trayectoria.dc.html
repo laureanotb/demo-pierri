@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -48,14 +49,46 @@
     a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
     img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
     @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       body, section { animation: none !important; }
-      * { transition-duration: .01ms !important; }
     }
   
     body { animation: dcFadeIn .6s ease both; }
     a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
     a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
     a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(180,146,63,.25);
+      border-radius: 2px;
+    }
+    i[data-lucide] { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+    a:hover i[data-lucide="arrow-right"], a:hover i[data-lucide="arrow-up-right"] { transform: translateX(4px); }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a),
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a) {
+      transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1);
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover,
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(10,18,32,0.12);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.35);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover i[data-lucide],
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover i[data-lucide],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover i[data-lucide] {
+      transform: scale(1.15);
+    }
+    a[style*="background:#B4923F"]:hover, button[style*="background:#B4923F"]:hover {
+      box-shadow: 0 12px 28px rgba(180,146,63,0.32);
+    }
   </style>
   <script src="./reveal.js"></script>
 </helmet>
@@ -109,7 +142,7 @@
         <h3 style="fontFamily:'Spectral',serif;fontSize:20px;fontWeight:600;color:#F7F4EC;margin:0 0 8px;">Fundación Abogados Sin Fronteras</h3>
         <p style="fontSize:13.5px;color:#9BA0AD;margin:0;maxWidth:420px;">Compromiso institucional del Dr. Pierri con el acceso a la justicia.</p>
       </div>
-      <a href="/actividades" style="background:#B4923F;color:#0A1220;padding:13px 24px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;whiteSpace:nowrap;">Conocer la Fundación</a>
+      <a href="/actividades/" style="background:#B4923F;color:#0A1220;padding:13px 24px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;whiteSpace:nowrap;">Conocer la Fundación</a>
     </div>
   </section>
 

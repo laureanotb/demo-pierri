@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -16,7 +17,15 @@
     body{margin:0}
     a{color:#F7F4EC}
     a:hover{color:#D4B96A}
-  
+    header nav > a, header nav > div > span[role="button"] { position:relative; }
+    header nav > a::after, header nav > div > span[role="button"]::after {
+      content:''; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:#D4B96A; border-radius:1px; transform:scaleX(0); transform-origin:left;
+      transition: transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    header nav > a:hover::after, header nav > div:hover > span[role="button"]::after,
+    header nav > div > span[role="button"][aria-expanded="true"]::after { transform:scaleX(1); }
+
     html{scroll-behavior:smooth}
     @keyframes fadeInUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
     section { animation: fadeInUp .7s cubic-bezier(.16,1,.3,1) both; }
@@ -46,14 +55,46 @@
     a:active, button:active, [role="button"]:active, [style*="cursor:pointer"]:active { transform: scale(.975); }
     img, input, textarea, select { transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
     @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       body, section { animation: none !important; }
-      * { transition-duration: .01ms !important; }
     }
   
     body { animation: dcFadeIn .6s ease both; }
     a, button, [role="button"], [style*="cursor:pointer"], [style*="cursor: pointer"] { -webkit-tap-highlight-color: transparent; }
     a:hover, button:hover, [role="button"]:hover { transform: translateY(-1px); }
     a:active, button:active, [role="button"]:active { transform: translateY(0) scale(.978); }
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(180,146,63,.25);
+      border-radius: 2px;
+    }
+    i[data-lucide] { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+    a:hover i[data-lucide="arrow-right"], a:hover i[data-lucide="arrow-up-right"] { transform: translateX(4px); }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a),
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a) {
+      transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1);
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover,
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(10,18,32,0.12);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.35);
+      z-index: 2;
+    }
+    div[style*="display:grid"] > div[style*="background:#FFFFFF"]:has(a):hover i[data-lucide],
+    div[style*="display:grid"] > a[style*="background:#FFFFFF"]:hover i[data-lucide],
+    div[style*="display:grid"] > div[style*="background:#0A1220"]:has(a):hover i[data-lucide] {
+      transform: scale(1.15);
+    }
+    a[style*="background:#B4923F"]:hover, button[style*="background:#B4923F"]:hover {
+      box-shadow: 0 12px 28px rgba(180,146,63,0.32);
+    }
   </style>
   <script src="./reveal.js"></script>
 </helmet>
@@ -67,10 +108,10 @@
     <sc-if value="{{ !isMobile }}" hint-placeholder-val="{{ true }}">
       <nav style="display:flex;alignItems:center;gap:26px;">
         <a href="/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Inicio</a>
-        <a href="/trayectoria" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Trayectoria</a>
+        <a href="/clientes/trayectoria/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Trayectoria</a>
 
         <div style="position:relative;" onMouseEnter="{{ openAreas }}" onMouseLeave="{{ closeAreas }}">
-          <span style="display:flex;alignItems:center;gap:4px;fontSize:14px;color:#EDEAE0;cursor:pointer;">
+          <span tabIndex="0" role="button" aria-haspopup="true" aria-expanded="{{ areasOpen }}" onClick="{{ toggleAreas }}" onKeyDown="{{ handleAreasKeyDown }}" style="display:flex;alignItems:center;gap:4px;fontSize:14px;color:#EDEAE0;cursor:pointer;">
             Áreas de Práctica
             <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
           </span>
@@ -81,16 +122,16 @@
                   <i data-lucide="{{ area.icon }}" style="width:16px;height:16px;color:#B4923F;flexShrink:0;"></i>{{ area.name }}
                 </a>
               </sc-for>
-              <a href="/areas-de-practica" style="display:flex;alignItems:center;gap:10px;padding:9px 12px;color:#D4B96A;fontSize:13px;fontWeight:600;textDecoration:none;borderRadius:2px;gridColumn:1 / -1;borderTop:1px solid rgba(180,146,63,0.25);marginTop:4px;paddingTop:12px;" style-hover="color:#F7F4EC;">Ver todas las áreas →</a>
+              <a href="/areas/" style="display:flex;alignItems:center;gap:10px;padding:9px 12px;color:#D4B96A;fontSize:13px;fontWeight:600;textDecoration:none;borderRadius:2px;gridColumn:1 / -1;borderTop:1px solid rgba(180,146,63,0.25);marginTop:4px;paddingTop:12px;" style-hover="color:#F7F4EC;">Ver todas las áreas →</a>
             </div>
           </sc-if>
         </div>
 
-        <a href="/casos-resonantes" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Casos Resonantes</a>
-        <a href="/clientes" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Clientes</a>
-        <a href="/codigo-pierri" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Código Pierri</a>
-        <a href="/actividades" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Actividades</a>
-        <a href="/libro" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Libro</a>
+        <a href="/casos/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Casos Resonantes</a>
+        <a href="/clientes/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Clientes</a>
+        <a href="/codigo-pierri/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Código Pierri</a>
+        <a href="/actividades/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Actividades</a>
+        <a href="/libro/" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Libro</a>
         <a href="/#contacto" style="fontSize:14px;textDecoration:none;color:#EDEAE0;" style-hover="color:#D4B96A;">Contacto</a>
       </nav>
     </sc-if>
@@ -102,7 +143,7 @@
         </a>
       </sc-if>
       <sc-if value="{{ isMobile }}">
-        <button onClick="{{ toggleMobile }}" style="background:transparent;border:1px solid rgba(180,146,63,0.35);borderRadius:2px;color:#F7F4EC;cursor:pointer;padding:8px;display:flex;">
+        <button onClick="{{ toggleMobile }}" aria-label="{{ mobileMenuLabel }}" aria-expanded="{{ mobileOpen }}" style="background:transparent;border:1px solid rgba(180,146,63,0.35);borderRadius:2px;color:#F7F4EC;cursor:pointer;padding:10px;minWidth:44px;minHeight:44px;display:flex;alignItems:center;justifyContent:center;">
           <i data-lucide="{{ menuIcon }}" style="width:20px;height:20px;"></i>
         </button>
       </sc-if>
@@ -113,7 +154,7 @@
     <sc-if value="{{ mobileOpen }}">
       <div style="background:#0A1220;borderTop:1px solid rgba(180,146,63,0.35);padding:20px 24px 28px;display:flex;flexDirection:column;gap:16px;">
         <a href="/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Inicio</a>
-        <a href="/trayectoria" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Trayectoria</a>
+        <a href="/clientes/trayectoria/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Trayectoria</a>
 
         <div>
           <span onClick="{{ toggleAreasMobile }}" style="display:flex;alignItems:center;justifyContent:space-between;fontSize:15px;color:#EDEAE0;cursor:pointer;">
@@ -131,11 +172,11 @@
           </sc-if>
         </div>
 
-        <a href="/casos-resonantes" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Casos Resonantes</a>
-        <a href="/clientes" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Clientes</a>
-        <a href="/codigo-pierri" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Código Pierri</a>
-        <a href="/actividades" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Actividades</a>
-        <a href="/libro" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Libro</a>
+        <a href="/casos/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Casos Resonantes</a>
+        <a href="/clientes/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Clientes</a>
+        <a href="/codigo-pierri/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Código Pierri</a>
+        <a href="/actividades/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Actividades</a>
+        <a href="/libro/" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Libro</a>
         <a href="/#contacto" style="fontSize:15px;textDecoration:none;color:#EDEAE0;">Contacto</a>
       </div>
     </sc-if>
@@ -148,16 +189,16 @@ class Component extends DCLogic {
   state = { areasOpen: false, mobileOpen: false, isMobile: false };
 
   areas = [
-    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal' },
-    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial' },
-    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas' },
-    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia' },
-    { name: 'Divorcio Digital Express', icon: 'zap', href: '/divorcio-digital-express' },
-    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional' },
-    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral' },
-    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo' },
-    { name: 'Delitos Informáticos', icon: 'lock', href: '/delitos-informaticos' },
-    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo' }
+    { name: 'Derecho Penal', icon: 'gavel', href: '/derecho-penal/' },
+    { name: 'Derecho Civil y Comercial', icon: 'file-text', href: '/derecho-civil-y-comercial/' },
+    { name: 'Registro de Marcas', icon: 'stamp', href: '/registro-de-marcas/' },
+    { name: 'Derecho de Familia', icon: 'users', href: '/derecho-de-familia/' },
+    { name: 'Divorcio Digital Express', icon: 'zap', href: '/areas/divorcio-digital-express/' },
+    { name: 'Derecho Previsional', icon: 'shield', href: '/derecho-previsional/' },
+    { name: 'Derecho Laboral', icon: 'briefcase', href: '/derecho-laboral/' },
+    { name: 'Derecho Administrativo', icon: 'building-2', href: '/derecho-administrativo/' },
+    { name: 'Delitos Informáticos', icon: 'lock', href: '/areas/delitos-informaticos/' },
+    { name: 'Derecho Deportivo (FIFA)', icon: 'trophy', href: '/derecho-deportivo/' }
   ];
 
   componentDidMount() {
@@ -177,10 +218,16 @@ class Component extends DCLogic {
       areasOpen: this.state.areasOpen,
       areas: this.areas,
       menuIcon: this.state.mobileOpen ? 'x' : 'menu',
+      mobileMenuLabel: this.state.mobileOpen ? 'Cerrar menú' : 'Abrir menú',
       areasChevron: this.state.areasOpen ? 'chevron-up' : 'chevron-down',
       openAreas: () => { if (!this.state.isMobile) this.setState({ areasOpen: true }); },
       closeAreas: () => { if (!this.state.isMobile) this.setState({ areasOpen: false }); },
+      toggleAreas: () => this.setState(s => ({ areasOpen: !s.areasOpen })),
       toggleAreasMobile: () => this.setState(s => ({ areasOpen: !s.areasOpen })),
+      handleAreasKeyDown: (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.setState(s => ({ areasOpen: !s.areasOpen })); }
+        if (e.key === 'Escape') this.setState({ areasOpen: false });
+      },
       toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen, areasOpen: false }))
     };
   }
