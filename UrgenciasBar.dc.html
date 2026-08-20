@@ -15,6 +15,8 @@
   <style>
     @keyframes urg-pulse-bg { 0%,100% { background:#B3211F; } 50% { background:#8C1917; } }
     @keyframes urg-pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.75); } }
+    @keyframes urg-text-swap-a { 0%,42% { opacity:1; transform:translateY(0); } 50%,92% { opacity:0; transform:translateY(-8px); } 100% { opacity:1; transform:translateY(0); } }
+    @keyframes urg-text-swap-b { 0%,42% { opacity:0; transform:translateY(8px); } 50%,92% { opacity:1; transform:translateY(0); } 100% { opacity:0; transform:translateY(8px); } }
   
     *, *::before, *::after { box-sizing: border-box; }
 html, body { max-width: 100%; overflow-x: hidden; }
@@ -114,21 +116,18 @@ img, svg { max-width: 100%; }
     }
     @media (max-width: 560px) {
       a[style*="urg-pulse-bg"] { gap: 10px !important; padding: 12px 16px !important; }
-      a[style*="urg-pulse-bg"] span[style*="fontSize:21px"],
-      a[style*="urg-pulse-bg"] span[style*="font-size: 21px"],
-      a[style*="urg-pulse-bg"] span[style*="width:1px"],
-      a[style*="urg-pulse-bg"] span[style*="width: 1px"] { display: none !important; }
-      a[style*="urg-pulse-bg"] span[style*="fontSize:23px"],
-      a[style*="urg-pulse-bg"] span[style*="font-size: 23px"] { font-size: 17px !important; }
+      span[style*="urg-text-swap-a"], span[style*="urg-text-swap-b"] { font-size: 16px !important; }
+      span[style*="minWidth:220px"], span[style*="min-width: 220px"] { min-width: 170px !important; }
     }
   </style>
   <script src="./reveal.js"></script>
 </helmet>
 <a href="{{ waHref }}" target="_blank" rel="noopener" style="display:flex;alignItems:center;justifyContent:center;gap:14px;width:100%;boxSizing:border-box;padding:15px 20px;textDecoration:none;animation:urg-pulse-bg 1.6s ease-in-out infinite;borderBottom:1px solid rgba(0,0,0,0.25);" style-hover="filter:brightness(1.08);">
   <i data-lucide="siren" style="width:26px;height:26px;color:#FFFFFF;flexShrink:0;animation:urg-pulse-dot 1.2s ease-in-out infinite;"></i>
-  <span style="fontFamily:'Work Sans',sans-serif;fontSize:21px;fontWeight:700;letterSpacing:0.8px;color:#FFFFFF;textTransform:uppercase;">Urgencias Penales</span>
-  <span style="width:1px;height:26px;background:rgba(255,255,255,0.35);"></span>
-  <span style="fontFamily:'Work Sans',sans-serif;fontSize:23px;fontWeight:700;color:#FFFFFF;whiteSpace:nowrap;letterSpacing:0.3px;">{{ waText }}</span>
+  <span style="position:relative;display:inline-flex;alignItems:center;justifyContent:center;height:27px;minWidth:220px;">
+    <span style="position:absolute;left:0;right:0;textAlign:center;fontFamily:'Work Sans',sans-serif;fontSize:21px;fontWeight:700;letterSpacing:0.6px;color:#FFFFFF;textTransform:uppercase;whiteSpace:nowrap;animation:urg-text-swap-a 6s ease-in-out infinite;">Urgencias Penales</span>
+    <span style="position:absolute;left:0;right:0;textAlign:center;fontFamily:'Work Sans',sans-serif;fontSize:21px;fontWeight:700;letterSpacing:0.3px;color:#FFFFFF;whiteSpace:nowrap;animation:urg-text-swap-b 6s ease-in-out infinite;">{{ waText }}</span>
+  </span>
   <i data-lucide="message-circle" style="width:24px;height:24px;color:#FFFFFF;flexShrink:0;"></i>
 </a>
 </x-dc>
