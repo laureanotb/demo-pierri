@@ -167,7 +167,7 @@ img, svg { max-width: 100%; }
           <h3 style="fontFamily:'Spectral',serif;fontSize:19px;fontWeight:600;color:#0A1220;margin:0;">{{ caso.title }}</h3>
           <p style="fontSize:13.5px;color:#5B6270;lineHeight:1.6;margin:0;flex:1;">{{ caso.summary }}</p>
           <div style="display:flex;alignItems:center;justifyContent:space-between;gap:12px;">
-            <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="fontSize:13px;fontWeight:600;color:#0A1220;textDecoration:none;">Consultar por este caso →</a>
+            <a href="{{ caso.waHref }}" target="_blank" rel="noopener" style="fontSize:13px;fontWeight:600;color:#0A1220;textDecoration:none;">Consultar por este caso →</a>
             <sc-if value="{{ caso.crossLink }}">
               <a href="{{ caso.crossLink }}" style="fontSize:12px;fontWeight:600;color:#8C7130;textDecoration:none;">{{ caso.crossLabel }}</a>
             </sc-if>
@@ -227,7 +227,13 @@ class Component extends DCLogic {
 
     const casosFiltrados = this.casos
       .filter(c => filtro === 'Todos' || c.categoria === filtro)
-      .map(c => ({ ...c, badgeColor: (this.colors[c.categoria] || {}).color, badgeBg: (this.colors[c.categoria] || {}).bg, badgeIcon: (this.colors[c.categoria] || {}).icon }));
+      .map(c => ({
+        ...c,
+        badgeColor: (this.colors[c.categoria] || {}).color,
+        badgeBg: (this.colors[c.categoria] || {}).bg,
+        badgeIcon: (this.colors[c.categoria] || {}).icon,
+        waHref: 'https://wa.me/5491138024907?text=' + encodeURIComponent('Hola, quería hacer una consulta relacionada con el caso "' + c.title + '".')
+      }));
 
     return { categorias, casosFiltrados };
   }

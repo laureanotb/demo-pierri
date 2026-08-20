@@ -197,11 +197,11 @@ img, svg { max-width: 100%; }
 
       <sc-if value="{{ submitted }}">
         <div style="background:#FFFFFF;border:1px solid #E4DFD3;padding:26px;borderRadius:2px;">
-          <p style="fontSize:14.5px;color:#0A1220;margin:0;">Gracias, recibimos tu consulta. Nos pondremos en contacto a la brevedad.</p>
+          <p style="fontSize:14.5px;color:#0A1220;margin:0;">{{ sentMessage }}</p>
         </div>
       </sc-if>
       <sc-if value="{{ !submitted }}" hint-placeholder-val="{{ true }}">
-        <form onSubmit="{{ handleSubmit }}" style="display:flex;flexDirection:column;gap:18px;">
+        <form onSubmit="{{ preventSubmit }}" style="display:flex;flexDirection:column;gap:18px;">
           <div>
             <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-nombre"><i data-lucide="user" style="width:14px;height:14px;color:#B4923F;"></i>Nombre completo</label>
             <input id="field-nombre" type="text" autocomplete="name" value="{{ fields.nombre }}" onChange="{{ onChangeNombre }}" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;"/>
@@ -221,7 +221,14 @@ img, svg { max-width: 100%; }
             <label style="display:flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#171B24;marginBottom:6px;" for="field-mensaje"><i data-lucide="message-square" style="width:14px;height:14px;color:#B4923F;"></i>Mensaje (opcional)</label>
             <textarea id="field-mensaje" value="{{ fields.mensaje }}" onChange="{{ onChangeMensaje }}" rows="4" style="width:100%;boxSizing:border-box;padding:12px 14px;border:1px solid #D8D2C2;borderRadius:2px;fontSize:14px;fontFamily:'Work Sans',sans-serif;background:#FFFFFF;resize:vertical;"></textarea>
           </div>
-          <button type="submit" style="background:#B4923F;color:#0A1220;padding:14px 24px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">Enviar consulta</button>
+          <div style="display:flex;gap:12px;flexWrap:wrap;">
+            <button type="button" onClick="{{ sendEmail }}" style="flex:1;minWidth:170px;display:flex;alignItems:center;justifyContent:center;gap:8px;background:#B4923F;color:#0A1220;padding:14px 20px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>Enviar por Email
+            </button>
+            <button type="button" onClick="{{ sendWhatsapp }}" style="flex:1;minWidth:170px;display:flex;alignItems:center;justifyContent:center;gap:8px;background:#0A1220;color:#F7F4EC;padding:14px 20px;border:1px solid rgba(180,146,63,0.5);borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">
+              <i data-lucide="message-circle" style="width:16px;height:16px;"></i>Enviar por WhatsApp
+            </button>
+          </div>
         </form>
       </sc-if>
     </div>
@@ -231,7 +238,7 @@ img, svg { max-width: 100%; }
     <div style="maxWidth:760px;margin:0 auto;textAlign:center;">
       <h2 style="fontFamily:'Spectral',serif;fontSize:24px;fontWeight:600;color:#F7F4EC;margin:0 0 22px;">Urgencias Penales: +54 9 11 3802-4907</h2>
       <div style="display:flex;gap:16px;justifyContent:center;flexWrap:wrap;alignItems:center;">
-        <a href="https://wa.me/5491138024907" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:8px;background:#B4923F;color:#0A1220;padding:14px 26px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;">
+        <a href="{{ waCtaHref }}" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:8px;background:#B4923F;color:#0A1220;padding:14px 26px;borderRadius:2px;fontSize:14px;fontWeight:600;textDecoration:none;">
           <i data-lucide="message-circle" style="width:16px;height:16px;"></i>Escribir por WhatsApp
         </a>
         <a href="https://www.google.com/maps/search/?api=1&query=Esmeralda+517+3+piso+Buenos+Aires" target="_blank" rel="noopener" style="display:flex;alignItems:center;gap:8px;color:#9BA0AD;fontSize:13.5px;textDecoration:none;">
@@ -247,6 +254,10 @@ img, svg { max-width: 100%; }
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  topic = 'Derecho Civil y Comercial';
+  contactEmail = 'PENDIENTE-EMAIL@pierriabogados.com.ar';
+  waNumber = '5491138024907';
+
   state = { fields: { nombre: '', email: '', asunto: '', mensaje: '' }, errors: {}, submitted: false };
 
   servicios = [
@@ -264,6 +275,33 @@ class Component extends DCLogic {
   componentDidUpdate() { this.refreshIcons(); }
   refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
 
+  buildMessageBody(fields) {
+    const labels = { nombre: 'Nombre', email: 'Email', asunto: 'Asunto', marca: 'Marca', club: 'Club / Representante', area: 'Área de interés' };
+    const lines = [];
+    for (const key of Object.keys(fields)) {
+      if (key === 'mensaje') continue;
+      const val = (fields[key] || '').toString().trim();
+      if (val) lines.push((labels[key] || key) + ': ' + val);
+    }
+    if (fields.mensaje && fields.mensaje.trim()) { lines.push(''); lines.push(fields.mensaje.trim()); }
+    return lines.join('\n');
+  }
+
+  send(channel) {
+    const errs = this.validate(this.state.fields);
+    if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
+    const fields = this.state.fields;
+    const body = this.buildMessageBody(fields);
+    if (channel === 'email') {
+      const subject = 'Consulta sobre ' + this.topic;
+      window.location.href = 'mailto:' + this.contactEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    } else {
+      const text = 'Hola, quería hacer una consulta sobre ' + this.topic + '.\n\n' + body;
+      window.open('https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    }
+    this.setState({ errors: {}, submitted: true, sentVia: channel });
+  }
+
   setField(key, value) { this.setState(s => ({ fields: { ...s.fields, [key]: value } })); }
 
   validate(fields) {
@@ -280,16 +318,17 @@ class Component extends DCLogic {
     return {
       servicios: this.servicios,
       fields, errors, submitted,
+      waCtaHref: 'https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent('Hola, quería hacer una consulta sobre ' + this.topic + '.'),
+      sentMessage: this.state.sentVia === 'whatsapp'
+        ? 'Se abrió WhatsApp con tu consulta lista para enviar. Si no se abrió automáticamente, escribinos directo al +54 9 11 3802-4907.'
+        : 'Se abrió tu programa de correo con la consulta lista para enviar. Si no se abrió automáticamente, probá con el botón de WhatsApp.',
       onChangeNombre: (e) => this.setField('nombre', e.target.value),
       onChangeEmail: (e) => this.setField('email', e.target.value),
       onChangeAsunto: (e) => this.setField('asunto', e.target.value),
       onChangeMensaje: (e) => this.setField('mensaje', e.target.value),
-      handleSubmit: (e) => {
-        e.preventDefault();
-        const errs = this.validate(this.state.fields);
-        if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
-        this.setState({ errors: {}, submitted: true });
-      }
+      preventSubmit: (e) => e.preventDefault(),
+      sendEmail: () => this.send('email'),
+      sendWhatsapp: () => this.send('whatsapp')
     };
   }
 }
