@@ -272,6 +272,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateSize);
     window.removeEventListener('scroll', this.onScroll, { capture: true });
+    clearTimeout(this.closeAreasTimer);
   }
   refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
 
@@ -290,12 +291,20 @@ class Component extends DCLogic {
       menuIcon: this.state.mobileOpen ? 'x' : 'menu',
       mobileMenuLabel: this.state.mobileOpen ? 'Cerrar menú' : 'Abrir menú',
       areasChevron: this.state.areasOpen ? 'chevron-up' : 'chevron-down',
-      openAreas: () => { if (!this.state.isMobile) this.setState({ areasOpen: true }); },
-      closeAreas: () => { if (!this.state.isMobile) this.setState({ areasOpen: false }); },
-      toggleAreas: () => this.setState(s => ({ areasOpen: !s.areasOpen })),
+      openAreas: () => {
+        if (this.state.isMobile) return;
+        clearTimeout(this.closeAreasTimer);
+        this.setState({ areasOpen: true });
+      },
+      closeAreas: () => {
+        if (this.state.isMobile) return;
+        clearTimeout(this.closeAreasTimer);
+        this.closeAreasTimer = setTimeout(() => this.setState({ areasOpen: false }), 250);
+      },
+      toggleAreas: () => { clearTimeout(this.closeAreasTimer); this.setState(s => ({ areasOpen: !s.areasOpen })); },
       toggleAreasMobile: () => this.setState(s => ({ areasOpen: !s.areasOpen })),
       handleAreasKeyDown: (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.setState(s => ({ areasOpen: !s.areasOpen })); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); clearTimeout(this.closeAreasTimer); this.setState(s => ({ areasOpen: !s.areasOpen })); }
         if (e.key === 'Escape') this.setState({ areasOpen: false });
       },
       toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen, areasOpen: false }))
