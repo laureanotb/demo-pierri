@@ -260,18 +260,18 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.updateSize);
     this.onScroll = () => {
       const el = document.scrollingElement || document.documentElement;
-      const y = window.scrollY || el.scrollTop || 0;
+      const y = window.scrollY || document.body.scrollTop || el.scrollTop || 0;
       const scrolled = y > 8;
       if (scrolled !== this.state.scrolled) this.setState({ scrolled });
     };
-    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
     this.onScroll();
     this.refreshIcons();
   }
   componentDidUpdate() { this.refreshIcons(); }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateSize);
-    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('scroll', this.onScroll, { capture: true });
   }
   refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
 
