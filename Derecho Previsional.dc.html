@@ -119,6 +119,22 @@ img, svg { max-width: 100%; }
     a[style*="background: rgb(180, 146, 63)"]:hover, button[style*="background: rgb(180, 146, 63)"]:hover {
       box-shadow: 0 12px 28px rgba(180,146,63,0.32);
     }
+
+    /* Stagger reveal on card grids: reuses reveal.js's inline transition, only adds a per-item delay */
+    div[style*="display:grid"] > *:nth-child(2), div[style*="display: grid"] > *:nth-child(2) { transition-delay: .05s !important; }
+    div[style*="display:grid"] > *:nth-child(3), div[style*="display: grid"] > *:nth-child(3) { transition-delay: .1s !important; }
+    div[style*="display:grid"] > *:nth-child(4), div[style*="display: grid"] > *:nth-child(4) { transition-delay: .15s !important; }
+    div[style*="display:grid"] > *:nth-child(5), div[style*="display: grid"] > *:nth-child(5) { transition-delay: .2s !important; }
+    div[style*="display:grid"] > *:nth-child(6), div[style*="display: grid"] > *:nth-child(6) { transition-delay: .25s !important; }
+    div[style*="display:grid"] > *:nth-child(7), div[style*="display: grid"] > *:nth-child(7) { transition-delay: .3s !important; }
+    div[style*="display:grid"] > *:nth-child(8), div[style*="display: grid"] > *:nth-child(8) { transition-delay: .35s !important; }
+    div[style*="display:grid"] > *:nth-child(9), div[style*="display: grid"] > *:nth-child(9) { transition-delay: .4s !important; }
+    div[style*="display:grid"] > *:nth-child(10), div[style*="display: grid"] > *:nth-child(10) { transition-delay: .45s !important; }
+    /* Stronger touch feedback on primary (bronze) buttons/links */
+    a[style*="background:#B4923F"]:active, button[style*="background:#B4923F"]:active,
+    a[style*="background: rgb(180, 146, 63)"]:active, button[style*="background: rgb(180, 146, 63)"]:active {
+      filter: brightness(0.9);
+    }
     @media (max-width: 860px) {
       div[style*="display:grid"][style*="repeat(4,1fr)"],
       div[style*="display:grid"][style*="repeat(5,1fr)"],
@@ -173,7 +189,7 @@ img, svg { max-width: 100%; }
       <div style="display:grid;gridTemplateColumns:repeat(3,1fr);gap:36px;">
         <div style="textAlign:center;">
           <i data-lucide="calendar-days" style="width:26px;height:26px;color:#B4923F;"></i>
-          <h3 style="fontFamily:'Spectral',serif;fontSize:17px;fontWeight:600;color:#0A1220;margin:16px 0 8px;">+33 años de trayectoria</h3>
+          <h3 style="fontFamily:'Spectral',serif;fontSize:17px;fontWeight:600;color:#0A1220;margin:16px 0 8px;">+<span class="dc-counter" data-target="33">0</span> años de trayectoria</h3>
           <p style="fontSize:13.5px;color:#5B6270;lineHeight:1.6;margin:0;">Décadas de ejercicio ininterrumpido en el fuero penal.</p>
         </div>
         <div style="textAlign:center;">
@@ -223,10 +239,10 @@ img, svg { max-width: 100%; }
           </div>
           <div style="display:flex;gap:12px;flexWrap:wrap;">
             <button type="button" onClick="{{ sendEmail }}" style="flex:1;minWidth:170px;display:flex;alignItems:center;justifyContent:center;gap:8px;background:#B4923F;color:#0A1220;padding:14px 20px;border:none;borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">
-              <i data-lucide="mail" style="width:16px;height:16px;"></i>Enviar por Email
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>{{ sendEmailLabel }}
             </button>
             <button type="button" onClick="{{ sendWhatsapp }}" style="flex:1;minWidth:170px;display:flex;alignItems:center;justifyContent:center;gap:8px;background:#0A1220;color:#F7F4EC;padding:14px 20px;border:1px solid rgba(180,146,63,0.5);borderRadius:2px;fontSize:14px;fontWeight:600;cursor:pointer;">
-              <i data-lucide="message-circle" style="width:16px;height:16px;"></i>Enviar por WhatsApp
+              <i data-lucide="message-circle" style="width:16px;height:16px;"></i>{{ sendWhatsappLabel }}
             </button>
           </div>
         </form>
@@ -267,7 +283,32 @@ class Component extends DCLogic {
     'Trámite sucesorio ante fallecimiento del cónyuge'
   ];
 
-  componentDidMount() { this.refreshIcons(); }
+  componentDidMount() { this.refreshIcons(); this.startCounters(); }
+  startCounters() {
+    var els = document.querySelectorAll('.dc-counter[data-target]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function animate(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if (reduce) { el.textContent = target; return; }
+      var start = null;
+      var dur = 1200;
+      function step(t) {
+        if (start === null) start = t;
+        var p = Math.min((t - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { animate(entry.target); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    els.forEach(function (el) { obs.observe(el); });
+  }
   componentDidUpdate() { this.refreshIcons(); }
   refreshIcons() { if (window.lucide) window.lucide.createIcons(); }
 
@@ -286,16 +327,19 @@ class Component extends DCLogic {
   send(channel) {
     const errs = this.validate(this.state.fields);
     if (Object.keys(errs).length) { this.setState({ errors: errs }); return; }
-    const fields = this.state.fields;
-    const body = this.buildMessageBody(fields);
-    if (channel === 'email') {
-      const subject = 'Consulta sobre ' + this.topic;
-      window.location.href = 'mailto:' + this.contactEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    } else {
-      const text = 'Hola, quería hacer una consulta sobre ' + this.topic + '.\n\n' + body;
-      window.open('https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-    }
-    this.setState({ errors: {}, submitted: true, sentVia: channel });
+    this.setState({ sending: channel });
+    setTimeout(() => {
+      const fields = this.state.fields;
+      const body = this.buildMessageBody(fields);
+      if (channel === 'email') {
+        const subject = 'Consulta sobre ' + this.topic;
+        window.location.href = 'mailto:' + this.contactEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      } else {
+        const text = 'Hola, quería hacer una consulta sobre ' + this.topic + '.\n\n' + body;
+        window.open('https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      }
+      this.setState({ errors: {}, submitted: true, sentVia: channel, sending: null });
+    }, 350);
   }
 
   setField(key, value) { this.setState(s => ({ fields: { ...s.fields, [key]: value } })); }
@@ -314,6 +358,8 @@ class Component extends DCLogic {
     return {
       servicios: this.servicios,
       fields, errors, submitted,
+      sendEmailLabel: this.state.sending === 'email' ? 'Abriendo…' : 'Enviar por Email',
+      sendWhatsappLabel: this.state.sending === 'whatsapp' ? 'Abriendo…' : 'Enviar por WhatsApp',
       waCtaHref: 'https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent('Hola, quería hacer una consulta sobre ' + this.topic + '.'),
       sentMessage: this.state.sentVia === 'whatsapp'
         ? 'Se abrió WhatsApp con tu consulta lista para enviar. Si no se abrió automáticamente, escribinos directo al +54 9 11 3802-4907.'
