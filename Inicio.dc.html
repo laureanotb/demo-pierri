@@ -220,13 +220,16 @@ img, svg { max-width: 100%; }
       <h2 style="fontFamily:'Spectral',serif;fontSize:30px;fontWeight:600;color:#0A1220;textAlign:center;margin:0 0 40px;">Áreas de Práctica</h2>
       <div style="display:grid;gridTemplateColumns:repeat(5,1fr);gap:1px;background:#E4DFD3;border:1px solid #E4DFD3;">
         <sc-for list="{{ areas }}" as="area" hint-placeholder-count="10">
-          <a href="{{ area.href }}" style="position:relative;background:#FFFFFF;padding:28px 20px;display:flex;flexDirection:column;gap:14px;textDecoration:none;" style-hover="background:#FBF9F4;">
+          <div style="position:relative;background:#FFFFFF;padding:28px 20px;display:flex;flexDirection:column;gap:10px;" style-hover="background:#FBF9F4;">
             <sc-if value="{{ area.badge }}">
-              
+
             </sc-if>
             <i data-lucide="{{ area.icon }}" style="width:24px;height:24px;color:#B4923F;"></i>
-            <span style="fontSize:14px;fontWeight:600;color:#171B24;lineHeight:1.3;">{{ area.name }}</span>
-          </a>
+            <a href="{{ area.href }}" style="fontSize:14px;fontWeight:600;color:#171B24;lineHeight:1.3;textDecoration:none;">{{ area.name }}</a>
+            <a href="{{ area.waHref }}" target="_blank" rel="noopener" style="display:inline-flex;alignItems:center;gap:5px;fontSize:11.5px;fontWeight:600;color:#1B5E3A;textDecoration:none;">
+              <i data-lucide="message-circle" style="width:12px;height:12px;"></i>WhatsApp
+            </a>
+          </div>
         </sc-for>
       </div>
     </div>
@@ -433,7 +436,7 @@ class Component extends DCLogic {
   renderVals() {
     const { fields, errors, submitted } = this.state;
     return {
-      areas: this.areas,
+      areas: this.areas.map(a => ({ ...a, waHref: 'https://wa.me/' + this.waNumber + '?text=' + encodeURIComponent('Hola, quería hacer una consulta sobre ' + a.name + '.') })),
       summaries: this.summaries,
       casos: this.casos,
       fields,

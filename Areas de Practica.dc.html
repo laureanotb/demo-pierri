@@ -159,6 +159,9 @@ img, svg { max-width: 100%; }
           </sc-if>
           <i data-lucide="{{ area.icon }}" style="width:30px;height:30px;color:#B4923F;"></i>
           <h3 style="fontFamily:'Spectral',serif;fontSize:21px;fontWeight:600;color:#0A1220;margin:0;">{{ area.name }}</h3>
+          <a href="{{ area.waHref }}" target="_blank" rel="noopener" style="display:inline-flex;alignItems:center;gap:6px;fontSize:12.5px;fontWeight:600;color:#1B5E3A;textDecoration:none;alignSelf:flex-start;">
+            <i data-lucide="message-circle" style="width:13px;height:13px;"></i>Consultar por WhatsApp
+          </a>
           <p style="fontSize:14px;color:#5B6270;lineHeight:1.55;margin:0;flex:1;">{{ area.text }}</p>
           <a href="{{ area.href }}" style="fontSize:13.5px;fontWeight:600;color:#0A1220;textDecoration:none;display:inline-flex;alignItems:center;gap:6px;">Ver más <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
         </div>
@@ -286,7 +289,7 @@ class Component extends DCLogic {
   renderVals() {
     const { fields, errors, submitted } = this.state;
     return {
-      areas: this.areas,
+      areas: this.areas.map(a => ({ ...a, waHref: 'https://wa.me/5491138024907?text=' + encodeURIComponent('Hola, quería hacer una consulta sobre ' + a.name + '.') })),
       fields, errors, submitted,
       sentMessage: this.state.sentVia === 'whatsapp'
         ? 'Se abrió WhatsApp con tu consulta lista para enviar. Si no se abrió automáticamente, escribinos directo al +54 9 11 3802-4907.'
